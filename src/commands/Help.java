@@ -1,8 +1,14 @@
 package commands;
 
-public class Help {
+public class Help implements Command{
 
-    public void help() {
-        System.out.println();
+    @Override
+    public String getDescription() {
+        return "help - вывод справки по доступным командам";
+    }
+
+    @Override
+    public void execute() {
+
     }
 }
