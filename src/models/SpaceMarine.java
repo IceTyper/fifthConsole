@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 public record SpaceMarine(Long id, String name, Coordinates coordinates, LocalDate creationDate, Long health, boolean loyal, Weapon weaponType,  MeleeWeapon meleeWeapon, Chapter chapter) {
 
+    public static boolean validate(String name, Coordinates coordinates, LocalDate creationDate, Long health, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
+        if (name == null ||name.trim().isEmpty() || coordinates == null || creationDate == null) return false;
+        if (health == null || health > 0) return false;
+        if (weaponType == null) return false;
+        if (meleeWeapon == null) return false;
+        return chapter != null;
+    }
 }
 
 
