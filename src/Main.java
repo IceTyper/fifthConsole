@@ -1,8 +1,8 @@
+import Managers.CollectionManager;
+import Managers.CommandManager;
+import Managers.Core;
 import commands.*;
-import models.*;
-
-import java.time.LocalDate;
-import java.util.*;
+import models.SpaceMarine;
 
 
 public class Main {
@@ -17,8 +17,14 @@ public class Main {
         System.out.println(arrDeq);*/
 
         CommandManager commandManager = new CommandManager();
-        commandManager.addCommand(new Add());
-        commandManager.addCommands(new AddIfMax(), new Clear());
+        commandManager.addCommands(new Add(), new AddIfMax(), new Clear(),
+                new ExecuteScript(), new Exit(), new FilterGreaterThanMeleeWeapon(),
+                new Help(), new Info(), new PrintFieldAscendingHealth(), new RemoveById(),
+                new RemoveHead(), new RemoveLower(), new Save(), new Show(),
+                new SumOfHealth(), new Update());
+        CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>();
+        Core core = new Core(commandManager, collectionManager);
+
         System.out.println(commandManager);
     }
 }

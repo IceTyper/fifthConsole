@@ -1,6 +1,7 @@
 package commands;
+import Managers.Core;
 
 public interface Command {
     String getDescription();
-    void execute();
+    void execute(Core core);
 }

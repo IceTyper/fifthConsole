@@ -8,7 +8,7 @@ public class RemoveLower implements Command{
     }
 
     @Override
-    public void execute() {
+    public void execute(Core core) {
         System.out.println("Remove lower");
     }
 }

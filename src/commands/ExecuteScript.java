@@ -10,7 +10,7 @@ public class ExecuteScript implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(Core core) {
         System.out.println("Execute script");
     }
 }

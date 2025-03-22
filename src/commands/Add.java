@@ -7,7 +7,7 @@ public class Add implements Command {
     }
 
     @Override
-    public void execute() {
-        System.out.println("Add");
+    public void execute(Core core) {
+
     }
 }

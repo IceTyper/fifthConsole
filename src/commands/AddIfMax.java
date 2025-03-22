@@ -9,7 +9,7 @@ public class AddIfMax implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(Core core) {
         System.out.println("Add Max");
     }
 }

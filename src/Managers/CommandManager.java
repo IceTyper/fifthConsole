@@ -1,4 +1,6 @@
-package commands;
+package Managers;
+
+import commands.Command;
 
 import java.util.HashMap;
 
@@ -13,6 +15,10 @@ public class CommandManager {
         for (Command command : commands) {
             addCommand(command);
         }
+    }
+
+    public HashMap<String, Command> getCommands() {
+        return commands;
     }
 
     @Override

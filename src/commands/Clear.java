@@ -7,7 +7,7 @@ public class Clear implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(Core core) {
         System.out.println("Clear");
     }
 }

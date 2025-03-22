@@ -8,7 +8,7 @@ public class Help implements Command{
     }
 
     @Override
-    public void execute() {
+    public void execute(Core core) {
 
     }
 }
