@@ -1,5 +1,5 @@
 package commands;
-
+import Managers.Core;
 public class Show implements Command {
     @Override
     public String getDescription() {

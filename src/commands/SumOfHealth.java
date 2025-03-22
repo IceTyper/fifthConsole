@@ -1,9 +1,9 @@
 package commands;
-
+import Managers.Core;
 public class SumOfHealth implements Command{
     @Override
     public String getDescription() {
-        return "sum_of_health - вывод суммы значений поля health "+ "" +
+        return "sum_of_health - вывод суммы значений поля health " +
                 "для всех элементов коллекции";
     }
 

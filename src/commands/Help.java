@@ -1,5 +1,7 @@
 package commands;
 
+import Managers.Core;
+
 public class Help implements Command{
 
     @Override

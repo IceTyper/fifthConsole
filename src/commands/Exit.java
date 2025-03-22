@@ -1,5 +1,7 @@
 package commands;
 
+import Managers.Core;
+
 public class Exit implements Command {
     @Override
     public String getDescription() {
