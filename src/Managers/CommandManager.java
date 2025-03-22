@@ -21,6 +21,10 @@ public class CommandManager {
         return commands;
     }
 
+    public Command getCommand(String commandName) {
+        return commands.get(commandName);
+    }
+
     @Override
     public String toString() {
         return "CommandManager{" +

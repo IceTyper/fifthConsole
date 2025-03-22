@@ -24,7 +24,8 @@ public class Main {
                 new SumOfHealth(), new Update());
         CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>();
         Core core = new Core(commandManager, collectionManager);
-
         System.out.println(commandManager);
+        core.getCommandManager().getCommand("help").execute(core);
+
     }
 }
