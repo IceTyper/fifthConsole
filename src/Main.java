@@ -1,8 +1,10 @@
-import Managers.CollectionManager;
-import Managers.CommandManager;
-import Managers.Core;
+import important.CollectionManager;
+import important.CommandManager;
+import important.Core;
 import commands.*;
 import models.SpaceMarine;
+
+import java.util.ArrayDeque;
 
 
 public class Main {
@@ -22,7 +24,7 @@ public class Main {
                 new Help(), new Info(), new PrintFieldAscendingHealth(), new RemoveById(),
                 new RemoveHead(), new RemoveLower(), new Save(), new Show(),
                 new SumOfHealth(), new Update());
-        CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>();
+        CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<SpaceMarine>());
         Core core = new Core(commandManager, collectionManager);
         System.out.println(commandManager);
         core.getCommandManager().getCommand("help").execute(core);

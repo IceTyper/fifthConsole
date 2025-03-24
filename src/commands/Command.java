@@ -1,5 +1,5 @@
 package commands;
-import Managers.Core;
+import important.Core;
 
 public interface Command {
     String getDescription();

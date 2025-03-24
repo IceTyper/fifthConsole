@@ -1,13 +1,12 @@
-package Managers;
-
-import models.SpaceMarine;
+package important;
 
 import java.util.ArrayDeque;
-import java.util.Collection;
 import java.util.Deque;
 
 public class CollectionManager<T> {
     private Deque<T> collection = new ArrayDeque<>();
+
+    public CollectionManager(ArrayDeque<T> collection) {this.collection = collection;}
 
     public Deque<T> getCollection() {return collection;}
 

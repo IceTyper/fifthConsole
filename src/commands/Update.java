@@ -1,5 +1,5 @@
 package commands;
-import Managers.Core;
+import important.Core;
 public class Update implements Command {
     @Override
     public String getDescription() {

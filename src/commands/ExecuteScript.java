@@ -1,6 +1,6 @@
 package commands;
 
-import Managers.Core;
+import important.Core;
 
 public class ExecuteScript implements Command {
     @Override

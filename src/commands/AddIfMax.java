@@ -1,6 +1,6 @@
 package commands;
 
-import Managers.Core;
+import important.Core;
 
 public class AddIfMax implements Command {
     @Override
