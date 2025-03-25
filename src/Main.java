@@ -1,6 +1,4 @@
-import important.CollectionManager;
-import important.CommandManager;
-import important.Core;
+import important.*;
 import commands.*;
 import models.SpaceMarine;
 
@@ -25,7 +23,8 @@ public class Main {
                 new RemoveHead(), new RemoveLower(), new Save(), new Show(),
                 new SumOfHealth(), new Update());
         CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<SpaceMarine>());
-        Core core = new Core(commandManager, collectionManager);
+        IOManagable ioManager = new IOManager();
+        Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager));
         System.out.println(commandManager);
         core.getCommandManager().getCommand("help").execute(core);
 

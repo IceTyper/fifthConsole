@@ -1,6 +1,7 @@
 package commands;
 
 import important.Core;
+import models.SpaceMarine;
 
 public class Add implements Command {
     @Override
@@ -10,6 +11,8 @@ public class Add implements Command {
 
     @Override
     public void execute(Core core) {
-
+        SpaceMarine spaceMarine = core.getBuilder().buildSpacemarine();
+        core.getCollectionManager().addElement(spaceMarine);
+        core.getIOManager().printMessage("Космический корабль успешно добавлен в коллекцию!");
     }
 }

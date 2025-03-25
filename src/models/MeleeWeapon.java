@@ -1,14 +1,23 @@
 package models;
 
 public enum MeleeWeapon {
-    CHAIN_SWORD("ChainSword"),
-    LIGHTING_CLAW("LightingClaw"),
-    POWER_FIST("PowerFist"),;
+    CHAIN_SWORD("CHAIN_SWORD"),
+    LIGHTING_CLAW("LIGHTING_CLAW"),
+    POWER_FIST("POWER_FIST"),;
 
-    private String name;
+    private final String name;
 
     MeleeWeapon(String name) {
         this.name = name;
+    }
+
+    public static MeleeWeapon getMeleeWeapon(String name) {
+        for (MeleeWeapon weapon : values()) {
+            if (weapon.name.equals(name)) {
+                return weapon;
+            }
+        }
+        return null;
     }
 
     @Override

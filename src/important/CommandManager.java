@@ -17,7 +17,7 @@ public class CommandManager {
         }
     }
 
-    public HashMap<String, Command> getCommands() {
+    public HashMap<String, Command> getCommandsCollection() {
         return commands;
     }
 

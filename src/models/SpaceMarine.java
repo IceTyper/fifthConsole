@@ -6,7 +6,7 @@ public record SpaceMarine(Long id, String name, Coordinates coordinates, LocalDa
 
 
 
-    /*public static boolean validate(String name, Coordinates coordinates, LocalDate creationDate, Long health, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
+    /*public static boolean validateString(String name, Coordinates coordinates, LocalDate creationDate, Long health, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
         if (name == null ||name.trim().isEmpty() || coordinates == null || creationDate == null) return false;
         if (health == null || health > 0) return false;
         if (weaponType == null) return false;

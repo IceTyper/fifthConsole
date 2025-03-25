@@ -1,14 +1,23 @@
 package models;
 
 public enum Weapon {
-    HEAVY_BOLTGUN("BoltGun"),
-    GRAV_GUN("GravGun"),
-    HEAVY_FLAMER("Flamer");
+    HEAVY_BOLTGUN("HEAVY_BOLT_GUN"),
+    GRAV_GUN("GRAV_GUN"),
+    HEAVY_FLAMER("HEAVY_FLAMER");
 
-    private String name;
+    private final String name;
 
     Weapon(String name) {
         this.name = name;
+    }
+
+    public static Weapon getWeapon(String name)  {
+        for (Weapon weapon : values()) {
+            if (weapon.name.equals(name)) {
+                return weapon;
+            }
+        }
+        return null;
     }
 
     @Override
