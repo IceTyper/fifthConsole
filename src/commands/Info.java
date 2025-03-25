@@ -1,6 +1,10 @@
 package commands;
 
+import important.CollectionManager;
 import important.Core;
+import models.SpaceMarine;
+
+import java.util.Deque;
 
 public class Info implements Command {
     @Override
@@ -10,6 +14,9 @@ public class Info implements Command {
 
     @Override
     public void execute(Core core) {
-        System.out.println("Info");
+        CollectionManager<?> collectionManager = core.getCollectionManager();
+        core.getIOManager().printMessage("Дата инициализации коллекции: " + collectionManager.getCreationDate() +
+                "\nТип хранимых элементов: SpaceMarine\n" +
+                "Количество элементов в коллекции: " + collectionManager.getCollection().size());
     }
 }

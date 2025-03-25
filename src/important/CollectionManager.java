@@ -1,12 +1,22 @@
 package important;
 
+import models.SpaceMarine;
+
+import java.time.LocalDate;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class CollectionManager<T> {
     private Deque<T> collection = new ArrayDeque<>();
+    private LocalDate creationDate;
+
+    {
+        creationDate = LocalDate.now();
+    }
 
     public CollectionManager(ArrayDeque<T> collection) {this.collection = collection;}
+
+    public LocalDate getCreationDate() {return creationDate;}
 
     public Deque<T> getCollection() {return collection;}
 
