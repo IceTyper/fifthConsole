@@ -1,5 +1,6 @@
 package important;
 
+import commands.Command;
 import models.SpaceMarine;
 
 public class Core {
@@ -21,4 +22,12 @@ public class Core {
     public IOManagable getIOManager() {return ioManager;}
     public Builder getBuilder() {return builder;}
 
+    public void startCore() {
+        ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
+        while (true) {
+            Command command = ioManager.checkInputForCommand(this);
+            command.execute(this);
+        }
+
+    }
 }

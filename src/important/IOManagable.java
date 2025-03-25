@@ -1,5 +1,7 @@
 package important;
 
+import commands.Command;
+
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -17,4 +19,6 @@ public interface IOManagable {
     <T extends Number> T getDigit(Function<String, T> function);
 
     void printMessage(String message);
+
+    Command checkInputForCommand(Core core);
 }

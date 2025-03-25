@@ -1,5 +1,7 @@
 package important;
 
+import commands.Command;
+
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -57,12 +59,23 @@ public class IOManager implements IOManagable{
     }
 
     @Override
+    public Command checkInputForCommand(Core core) {
+        CommandManager commandManager = core.getCommandManager();
+        while (true) {
+            String userInput = getUserInput().toLowerCase();
+            String[] splittedInput = userInput.split(" ");
+            if (commandManager.getCommandsCollection().containsKey(splittedInput[0])) {
+                return commandManager.getCommandsCollection().get(splittedInput[0]);
+            } else {
+                core.getIOManager().printMessage("Строка не опознана, повторите попытку.\n");
+            }
+        }
+    }
+
+    @Override
     public void printError(String errorMessage) {
         System.err.print(errorMessage);
     }
 
-    @Override
-    public <T extends Number> T validateDigit(Predicate<T> condition) {
-        return null;
-    }
+
 }

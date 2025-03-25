@@ -54,13 +54,13 @@ public class Builder {
 
     public Weapon buildWeapon() {
         List<String> weapons = Arrays.asList("HEAVY_FLAMER", "HEAVY_BOLT_GUN", "GRAV_GUN");
-        String weaponType = ioManager.validateString(a -> weapons.contains(a));
+        String weaponType = ioManager.validateString(a -> weapons.contains(a.toUpperCase()) || a == null);
         return Weapon.getWeapon(weaponType);
     }
 
     public MeleeWeapon buildMeleeWeapon() {
         List<String> meleeWeapons = Arrays.asList("CHAIN_SWORD", "LIGHTING_CLAW", "POWER_FIST");
-        String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a));
+        String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a.toUpperCase()) || a == null);
         return MeleeWeapon.getMeleeWeapon(meleeWeaponType);
     }
 }

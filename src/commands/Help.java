@@ -11,7 +11,7 @@ public class Help implements Command{
 
     @Override
     public void execute(Core core) {
-        for (Command command : core.getCommandManager().getCommands().values()) {
+        for (Command command : core.getCommandManager().getCommandsCollection().values()) {
             System.out.println(command.getDescription());
         }
     }

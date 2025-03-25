@@ -25,8 +25,6 @@ public class Main {
         CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<SpaceMarine>());
         IOManagable ioManager = new IOManager();
         Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager));
-        System.out.println(commandManager);
-        core.getCommandManager().getCommand("help").execute(core);
-
+        core.startCore();
     }
 }
