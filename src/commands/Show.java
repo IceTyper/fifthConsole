@@ -1,5 +1,8 @@
 package commands;
 import important.Core;
+
+import java.util.Deque;
+
 public class Show implements Command {
     @Override
     public String getDescription() {
@@ -8,6 +11,15 @@ public class Show implements Command {
 
     @Override
     public void execute(Core core) {
-        System.out.println("Show");
+        Deque<?> collection = core.getCollectionManager().getCollection();
+        if (!collection.isEmpty()) {
+            for (Object element : collection) {
+                System.out.println("*******");
+                System.out.println(element);
+                System.out.println("*******");
+            }
+        } else {
+            System.out.println("Элементов нет, сорь");
+        }
     }
 }

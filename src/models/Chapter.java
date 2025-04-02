@@ -15,10 +15,8 @@ public class Chapter {
 
     @Override
     public String toString() {
-        return "Chapter{" +
-                "name='" + name + '\'' +
-                ", marinesCount=" + marinesCount +
-                ", world='" + world + '\'' +
-                '}';
+        return "Имя = '" + name + '\'' +
+                "\n Размер экипажа = " + marinesCount +
+                "\n Мир = '" + world + '\'';
     }
 }

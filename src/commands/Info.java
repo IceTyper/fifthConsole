@@ -16,7 +16,7 @@ public class Info implements Command {
     public void execute(Core core) {
         CollectionManager<?> collectionManager = core.getCollectionManager();
         core.getIOManager().printMessage("Дата инициализации коллекции: " + collectionManager.getCreationDate() +
-                "\nТип хранимых элементов: SpaceMarine\n" +
-                "Количество элементов в коллекции: " + collectionManager.getCollection().size());
+                "\nТип коллекции: " + collectionManager.getCollectionType().getSimpleName() +
+                "\nКоличество элементов в коллекции: " + collectionManager.getCollection().size());
     }
 }

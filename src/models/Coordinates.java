@@ -11,9 +11,7 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "Coordinates{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "x = " + x +
+                ", y = " + y;
     }
 }

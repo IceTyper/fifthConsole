@@ -28,6 +28,5 @@ public class Core {
             Command command = ioManager.checkInputForCommand(this);
             command.execute(this);
         }
-
     }
 }

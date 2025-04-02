@@ -23,4 +23,6 @@ public class CollectionManager<T> {
     public void setCollection(Deque<T> collection) {this.collection = collection;}
 
     public void addElement(T element) {collection.addFirst(element);}
+
+    public Class<?> getCollectionType() { return collection.getClass();}
 }
