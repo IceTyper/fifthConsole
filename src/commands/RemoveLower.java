@@ -1,6 +1,9 @@
 package commands;
 
 import important.Core;
+import models.SpaceMarine;
+
+import java.util.Deque;
 
 public class RemoveLower implements Command{
     @Override
@@ -11,6 +14,9 @@ public class RemoveLower implements Command{
 
     @Override
     public void execute(Core core, String[] args) {
-        System.out.println("Remove lower");
+        Deque<SpaceMarine> arrDeq = core.getCollectionManager().getCollection();
+        SpaceMarine comparingMarine = core.getBuilder().buildSpacemarine();
+        arrDeq.removeIf(spaceMarine -> comparingMarine.compareTo(spaceMarine) > 0);
+        System.out.println("Элементы, меньшие, чем заданный, изничтожены");
     }
 }
