@@ -2,21 +2,19 @@ package important;
 import models.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 
 public class Builder {
-    static private long ID = 1;
+
 
     private final IOManagable ioManager;
 
     public Builder(IOManagable ioManager) {this.ioManager = ioManager;}
 
     public SpaceMarine buildSpacemarine() {
-        Long id = ID++;
         ioManager.printMessage("Введите имя космического корабля: ");
         String name = ioManager.validateString(a -> (a != null && !a.trim().isEmpty()));
         ioManager.printMessage("Теперь введите координаты: ");
@@ -30,7 +28,7 @@ public class Builder {
         ioManager.printMessage("Выберите холодное оружие (CHAIN_SWORD, LIGHTING_CLAW, POWER_FIST): ");
         MeleeWeapon meleeWeapon = buildMeleeWeapon();
         Chapter chapter = buildChapter();
-        return new SpaceMarine(id, name, coords, LocalDate.now(), health, loyal, weaponType, meleeWeapon, chapter);
+        return new SpaceMarine(name, coords, LocalDate.now(), health, loyal, weaponType, meleeWeapon, chapter);
     }
 
     public Coordinates buildCoordinates() {
@@ -38,7 +36,7 @@ public class Builder {
         long x = ioManager.validateDigit(Long::parseLong, a -> (a != null && a > -483));
         ioManager.printMessage("Введите координату y (y > -325): ");
         int y = ioManager.validateDigit(Integer::parseInt, a -> (a != null && a > -325));
-        return new Coordinates((long)1, 2);
+        return new Coordinates(x, y);
     }
 
     public Chapter buildChapter() {
@@ -52,13 +50,13 @@ public class Builder {
     }
 
     public Weapon buildWeapon() {
-        List<String> weapons = Arrays.asList("HEAVY_FLAMER", "HEAVY_BOLT_GUN", "GRAV_GUN");
+        List<String> weapons = Arrays.asList("HEAVY_FLAMER", "HEAVY_BOLT_GUN", "GRAV_GUN", "NONE");
         String weaponType = ioManager.validateString(a -> weapons.contains(a.toUpperCase()));
         return Weapon.getWeapon(weaponType);
     }
 
     public MeleeWeapon buildMeleeWeapon() {
-        List<String> meleeWeapons = Arrays.asList("CHAIN_SWORD", "LIGHTING_CLAW", "POWER_FIST");
+        List<String> meleeWeapons = Arrays.asList("CHAIN_SWORD", "LIGHTING_CLAW", "POWER_FIST", "NONE");
         String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a.toUpperCase()));
         return MeleeWeapon.getMeleeWeapon(meleeWeaponType);
     }

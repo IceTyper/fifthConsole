@@ -23,8 +23,8 @@ public class Main {
                 new Help(), new Info(), new PrintFieldAscendingHealth(), new RemoveById(),
                 new RemoveHead(), new RemoveLower(), new Save(), new Show(),
                 new SumOfHealth(), new Update());
-        CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<SpaceMarine>());
-        collectionManager.getCollection().add(new SpaceMarine((long)1, "sg", new Coordinates((long) 1, 1 ), LocalDate.now(), (long) 1, true, Weapon.GRAV_GUN, MeleeWeapon.CHAIN_SWORD, new Chapter("wef", (long) 232, "erwger")));
+        CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<>());
+        collectionManager.getCollection().add(new SpaceMarine( "sg", new Coordinates((long) 1, 1 ), LocalDate.now(), (long) 1, true, Weapon.GRAV_GUN, MeleeWeapon.CHAIN_SWORD, new Chapter("wef", 232, "erwger")));
         IOManagable ioManager = new IOManager();
         Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager));
         core.startCore();

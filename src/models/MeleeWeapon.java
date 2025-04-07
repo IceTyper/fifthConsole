@@ -4,7 +4,7 @@ public enum MeleeWeapon {
     CHAIN_SWORD("CHAIN_SWORD"),
     LIGHTING_CLAW("LIGHTING_CLAW"),
     POWER_FIST("POWER_FIST"),
-    NOTHING("");
+    NOTHING("NONE");
 
     private final String name;
 
