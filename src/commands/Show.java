@@ -10,7 +10,7 @@ public class Show implements Command {
     }
 
     @Override
-    public void execute(Core core) {
+    public void execute(Core core, String[] args) {
         Deque<?> collection = core.getCollectionManager().getCollection();
         if (!collection.isEmpty()) {
             for (Object element : collection) {

@@ -10,7 +10,7 @@ public class PrintFieldAscendingHealth implements Command {
     }
 
     @Override
-    public void execute(Core core) {
+    public void execute(Core core, String[] args) {
         System.out.println("Printing field ascending health");
     }
 }

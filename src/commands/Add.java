@@ -10,7 +10,7 @@ public class Add implements Command {
     }
 
     @Override
-    public void execute(Core core) {
+    public void execute(Core core, String[] args) {
         SpaceMarine spaceMarine = core.getBuilder().buildSpacemarine();
         core.getCollectionManager().addElement(spaceMarine);
         core.getIOManager().printMessage("Космический корабль успешно добавлен в коллекцию!");

@@ -11,7 +11,7 @@ public class AddIfMax implements Command {
     }
 
     @Override
-    public void execute(Core core) {
+    public void execute(Core core, String[] args) {
         System.out.println("Add Max");
     }
 }

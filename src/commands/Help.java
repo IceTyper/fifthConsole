@@ -10,7 +10,7 @@ public class Help implements Command{
     }
 
     @Override
-    public void execute(Core core) {
+    public void execute(Core core, String[] args) {
         for (Command command : core.getCommandManager().getCommandsCollection().values()) {
             System.out.println(command.getDescription());
         }

@@ -9,7 +9,7 @@ public class RemoveHead implements Command {
     }
 
     @Override
-    public void execute(Core core) {
+    public void execute(Core core, String[] args) {
         System.out.println("Remove head");
     }
 }
