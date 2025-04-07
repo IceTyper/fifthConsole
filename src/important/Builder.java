@@ -29,7 +29,6 @@ public class Builder {
         Weapon weaponType = buildWeapon();
         ioManager.printMessage("Выберите холодное оружие (CHAIN_SWORD, LIGHTING_CLAW, POWER_FIST): ");
         MeleeWeapon meleeWeapon = buildMeleeWeapon();
-        ioManager.printMessage("Напишите Часть: ");
         Chapter chapter = buildChapter();
         return new SpaceMarine(id, name, coords, LocalDate.now(), health, loyal, weaponType, meleeWeapon, chapter);
     }
@@ -43,7 +42,7 @@ public class Builder {
     }
 
     public Chapter buildChapter() {
-        ioManager.printMessage("Введите название: ");
+        ioManager.printMessage("Введите название части: ");
         String name = ioManager.validateString(a -> (a != null && !a.trim().isEmpty()));
         ioManager.printMessage("Теперь введи количество людей в экипаже: ");
         long marinesCount = ioManager.validateDigit(Long::parseLong, a -> (a != null && a > 0 && a <= 1000));
@@ -54,13 +53,13 @@ public class Builder {
 
     public Weapon buildWeapon() {
         List<String> weapons = Arrays.asList("HEAVY_FLAMER", "HEAVY_BOLT_GUN", "GRAV_GUN");
-        String weaponType = ioManager.validateString(a -> weapons.contains(a.toUpperCase()) || a == null);
+        String weaponType = ioManager.validateString(a -> weapons.contains(a.toUpperCase()));
         return Weapon.getWeapon(weaponType);
     }
 
     public MeleeWeapon buildMeleeWeapon() {
         List<String> meleeWeapons = Arrays.asList("CHAIN_SWORD", "LIGHTING_CLAW", "POWER_FIST");
-        String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a.toUpperCase()) || a == null);
+        String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a.toUpperCase()));
         return MeleeWeapon.getMeleeWeapon(meleeWeaponType);
     }
 }

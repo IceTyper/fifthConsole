@@ -3,7 +3,8 @@ package models;
 public enum Weapon {
     HEAVY_BOLTGUN("HEAVY_BOLT_GUN"),
     GRAV_GUN("GRAV_GUN"),
-    HEAVY_FLAMER("HEAVY_FLAMER");
+    HEAVY_FLAMER("HEAVY_FLAMER"),
+    NOTHING("");
 
     private final String name;
 
