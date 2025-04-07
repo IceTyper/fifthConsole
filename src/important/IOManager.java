@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class IOManager implements IOManagable{
+    private static String userInput;
 
     @Override
     public String getUserInput() {
@@ -53,6 +54,8 @@ public class IOManager implements IOManagable{
     return num;
     }
 
+    public String getUserInputInstance() {return userInput;}
+
     @Override
     public void printMessage(String message) {
         System.out.println(message);
@@ -62,7 +65,7 @@ public class IOManager implements IOManagable{
     public Command checkInputForCommand(Core core) {
         CommandManager commandManager = core.getCommandManager();
         while (true) {
-            String userInput = getUserInput().toLowerCase();
+            userInput = getUserInput().toLowerCase();
             String[] splittedInput = userInput.split(" ");
             if (commandManager.getCommandsCollection().containsKey(splittedInput[0])) {
                 return commandManager.getCommandsCollection().get(splittedInput[0]);

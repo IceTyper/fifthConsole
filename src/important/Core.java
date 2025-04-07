@@ -26,7 +26,7 @@ public class Core {
         ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
         while (true) {
             Command command = ioManager.checkInputForCommand(this);
-            command.execute(this, );
+            command.execute(this, ioManager.getUserInputInstance().split(" "));
         }
     }
 }

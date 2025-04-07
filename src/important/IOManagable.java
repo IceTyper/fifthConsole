@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 public interface IOManagable {
 
-
     String getUserInput();
 
     String validateString(Predicate<String> condition);
@@ -19,6 +18,8 @@ public interface IOManagable {
     <T extends Number> T getDigit(Function<String, T> function);
 
     void printMessage(String message);
+
+    public String getUserInputInstance();
 
     Command checkInputForCommand(Core core);
 }
