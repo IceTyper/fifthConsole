@@ -3,6 +3,8 @@ package commands;
 import important.Core;
 import interfaces.Command;
 
+import java.util.Deque;
+
 public class RemoveHead implements Command {
     @Override
     public String getDescription() {
@@ -11,6 +13,11 @@ public class RemoveHead implements Command {
 
     @Override
     public void execute(Core core, String[] args) {
-        System.out.println("Remove head");
+        Deque<?> collection = core.getCollectionManager().getCollection();
+        if (collection.isEmpty()) {
+            System.out.println("Элементов нет, не могу вывести первый элемент");
+        } else {
+            System.out.println(collection.removeFirst());
+        }
     }
 }
