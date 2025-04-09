@@ -31,6 +31,7 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
     }
 
     public Long getId() {return id;}
+    public MeleeWeapon getMeleeWeapon() {return meleeWeapon;}
 
     @Override
     public String toString() {
