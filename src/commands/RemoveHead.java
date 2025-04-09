@@ -18,6 +18,7 @@ public class RemoveHead implements Command {
             System.out.println("Элементов нет, не могу вывести первый элемент");
         } else {
             System.out.println(collection.removeFirst());
+            core.getCollectionManager().sortCollection();
         }
     }
 }

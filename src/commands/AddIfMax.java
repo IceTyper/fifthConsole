@@ -1,7 +1,11 @@
 package commands;
 
+import important.CollectionManager;
 import important.Core;
 import interfaces.Command;
+import models.SpaceMarine;
+
+import java.util.Deque;
 
 public class AddIfMax implements Command {
     @Override
@@ -13,6 +17,13 @@ public class AddIfMax implements Command {
 
     @Override
     public void execute(Core core, String[] args) {
-        System.out.println("Add Max");
+        CollectionManager<SpaceMarine> collectionManager = core.getCollectionManager();
+        SpaceMarine marine = core.getBuilder().buildSpacemarine();
+        if (marine.compareTo(collectionManager.getCollection().getFirst()) > 0) {
+            collectionManager.addElement(marine);
+            System.out.println("Элемент добавлен");
+        } else {
+            System.out.println("Элемент не соответствует условиям");
+        }
     }
 }

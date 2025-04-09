@@ -3,9 +3,7 @@ package important;
 import models.SpaceMarine;
 
 import java.time.LocalDate;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
+import java.util.*;
 
 public class CollectionManager<T> {
     private Deque<T> collection = new ArrayDeque<>();
@@ -21,9 +19,14 @@ public class CollectionManager<T> {
 
     public Deque<T> getCollection() {return collection;}
 
-    public void setCollection(Deque<T> collection) {this.collection = collection;}
+    public void setCollection(Deque<T> collection) {this.collection = collection; sortCollection();}
 
-    public void addElement(T element) {collection.addFirst(element);}
+    public void addElement(T element) {collection.addFirst(element); sortCollection();}
 
     public Class<?> getCollectionType() { return collection.getClass();}
+
+    public void sortCollection() {
+        List<SpaceMarine> list = new ArrayList<>((Collection<? extends SpaceMarine>) collection);
+        Collections.sort(list);
+    }
 }

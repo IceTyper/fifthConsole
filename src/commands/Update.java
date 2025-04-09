@@ -30,7 +30,7 @@ public class Update implements Command {
                         List<SpaceMarine> list = new ArrayList<>(collection);
                         SpaceMarine updatedSpaceMarine = core.getBuilder().buildSpacemarine();
                         list.set(list.indexOf(spaceMarine), updatedSpaceMarine);
-                        collection = new ArrayDeque<>(list);
+                        core.getCollectionManager().setCollection(new ArrayDeque<>(list));
                         core.getIOManager().printMessage("Космический корабль успешно добавлен в коллекцию!");
                     }
                 }
