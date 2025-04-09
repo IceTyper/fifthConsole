@@ -1,6 +1,7 @@
 package commands;
 
 import important.Core;
+import interfaces.Command;
 
 public class PrintFieldAscendingHealth implements Command {
     @Override

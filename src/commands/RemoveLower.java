@@ -1,11 +1,12 @@
 package commands;
 
 import important.Core;
+import interfaces.Command;
 import models.SpaceMarine;
 
 import java.util.Deque;
 
-public class RemoveLower implements Command{
+public class RemoveLower implements Command {
     @Override
     public String getDescription() {
         return "remove_lower {element} - удаление из коллекции всех элементов, " +

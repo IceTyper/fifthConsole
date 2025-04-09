@@ -1,12 +1,13 @@
 package important;
 
-import commands.Command;
+import interfaces.Command;
+import interfaces.IOManagable;
 
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class IOManager implements IOManagable{
+public class IOManager implements IOManagable {
     private static String userInput;
 
     @Override

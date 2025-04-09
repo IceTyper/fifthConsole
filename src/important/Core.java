@@ -1,10 +1,12 @@
 package important;
 
-import commands.Command;
+import interfaces.Command;
+import interfaces.IOManagable;
 import models.SpaceMarine;
 
 public class Core {
 
+    private boolean isOn = true;
     private final CommandManager commandManager;
     private final CollectionManager<SpaceMarine> collectionManager;
     private final IOManagable ioManager;
@@ -24,9 +26,11 @@ public class Core {
 
     public void startCore() {
         ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
-        while (true) {
+        while (isOn) {
             Command command = ioManager.checkInputForCommand(this);
             command.execute(this, ioManager.getUserInputInstance().split(" "));
         }
     }
+
+    public void endCore() {isOn = false;}
 }

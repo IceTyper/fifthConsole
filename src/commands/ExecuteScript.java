@@ -1,6 +1,7 @@
 package commands;
 
 import important.Core;
+import interfaces.Command;
 
 public class ExecuteScript implements Command {
     @Override

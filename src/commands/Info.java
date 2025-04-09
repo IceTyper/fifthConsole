@@ -2,6 +2,7 @@ package commands;
 
 import important.CollectionManager;
 import important.Core;
+import interfaces.Command;
 
 public class Info implements Command {
     @Override

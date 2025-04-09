@@ -1,8 +1,9 @@
 package commands;
 
 import important.Core;
+import interfaces.Command;
 
-public class Help implements Command{
+public class Help implements Command {
 
     @Override
     public String getDescription() {

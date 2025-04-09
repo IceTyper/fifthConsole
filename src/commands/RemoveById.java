@@ -1,8 +1,9 @@
 package commands;
 
 import important.Core;
+import interfaces.Command;
 
-public class RemoveById implements Command{
+public class RemoveById implements Command {
     @Override
     public String getDescription() {
         return "remove_by_id - удаление элемента из коллекции по его id";

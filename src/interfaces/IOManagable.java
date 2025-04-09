@@ -1,6 +1,6 @@
-package important;
+package interfaces;
 
-import commands.Command;
+import important.Core;
 
 import java.util.function.Function;
 import java.util.function.Predicate;

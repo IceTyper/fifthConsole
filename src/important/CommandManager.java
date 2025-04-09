@@ -1,6 +1,6 @@
 package important;
 
-import commands.Command;
+import interfaces.Command;
 
 import java.util.HashMap;
 

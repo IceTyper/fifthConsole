@@ -1,5 +1,7 @@
 package commands;
 import important.Core;
+import interfaces.Command;
+
 public class Save implements Command {
     @Override
     public String getDescription() {

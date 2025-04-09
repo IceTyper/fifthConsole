@@ -1,6 +1,7 @@
 package commands;
 
 import important.Core;
+import interfaces.Command;
 import models.SpaceMarine;
 
 public class Add implements Command {

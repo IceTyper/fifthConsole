@@ -1,5 +1,6 @@
 package commands;
 import important.Core;
+import interfaces.Command;
 import models.SpaceMarine;
 
 import java.util.ArrayDeque;

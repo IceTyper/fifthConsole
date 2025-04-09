@@ -1,6 +1,8 @@
 package commands;
 import important.Core;
-public class SumOfHealth implements Command{
+import interfaces.Command;
+
+public class SumOfHealth implements Command {
     @Override
     public String getDescription() {
         return "sum_of_health - вывод суммы значений поля health " +
