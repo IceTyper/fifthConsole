@@ -1,5 +1,6 @@
 package org.example.commands;
 
+import org.example.Exceptions.RedundantArguments;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 import org.example.models.SpaceMarine;
@@ -15,9 +16,23 @@ public class RemoveLower implements Command {
 
     @Override
     public void execute(Core core, String[] args) {
-        Deque<SpaceMarine> arrDeq = core.getCollectionManager().getCollection();
-        SpaceMarine comparingMarine = core.getBuilder().buildSpacemarine();
-        arrDeq.removeIf(spaceMarine -> comparingMarine.compareTo(spaceMarine) > 0);
-        System.out.println("Элементы, меньшие, чем заданный, изничтожены");
+        try {
+            if (args.length > 2) {
+                throw new RedundantArguments();
+            }
+            Deque<SpaceMarine> collection = core.getCollectionManager().getCollection();
+            SpaceMarine comparingMarine = core.getBuilder().buildSpacemarine();
+            int size = collection.size();
+            collection.removeIf(spaceMarine -> comparingMarine.compareTo(spaceMarine) > 0);
+            if (collection.size() < size) {
+                System.out.println("Элементы, меньшие, чем заданный, изничтожены");
+            } else {
+                System.out.println("Меньшие элементы не найдены");
+            }
+
+        } catch (RedundantArguments e) {
+            System.out.println(e.printProblem(args));
+        }
+
     }
 }

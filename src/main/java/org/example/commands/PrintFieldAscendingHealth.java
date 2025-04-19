@@ -1,5 +1,6 @@
 package org.example.commands;
 
+import org.example.Exceptions.RedundantArguments;
 import org.example.important.CollectionManager;
 import org.example.important.Core;
 import org.example.interfaces.Command;
@@ -18,20 +19,28 @@ public class PrintFieldAscendingHealth implements Command {
 
     @Override
     public void execute(Core core, String[] args) {
-        CollectionManager<SpaceMarine> cManager = core.getCollectionManager();
-        if (cManager.getCollection().isEmpty()) {
-            System.out.println("Элементов нема");
-        } else {
-            Deque<SpaceMarine> collection = new ArrayDeque<>(cManager.getCollection());
-            Long[] healths = new Long[collection.size()];
-            for (int i = 0; i < cManager.getCollection().size(); i++) {
-                healths[i] = collection.removeFirst().getHealth();
+        try {
+            if (args.length > 1) {
+                throw new RedundantArguments();
             }
-            Arrays.sort(healths);
-            System.out.println("Отсортированный список жизней: ");
-            for (Long health : healths) {
-                System.out.println(health);
+            CollectionManager<SpaceMarine> cManager = core.getCollectionManager();
+            if (cManager.getCollection().isEmpty()) {
+                System.out.println("Элементов нема");
+            } else {
+                Deque<SpaceMarine> collection = new ArrayDeque<>(cManager.getCollection());
+                Long[] healths = new Long[collection.size()];
+                for (int i = 0; i < cManager.getCollection().size(); i++) {
+                    healths[i] = collection.removeFirst().getHealth();
+                }
+                Arrays.sort(healths);
+                System.out.println("Отсортированный список жизней: ");
+                for (Long health : healths) {
+                    System.out.println(health);
+                }
             }
+        } catch (RedundantArguments e) {
+            System.out.println(e.printProblem(args));
         }
+
     }
 }

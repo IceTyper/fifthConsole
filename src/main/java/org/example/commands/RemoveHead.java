@@ -1,5 +1,6 @@
 package org.example.commands;
 
+import org.example.Exceptions.RedundantArguments;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 
@@ -13,12 +14,19 @@ public class RemoveHead implements Command {
 
     @Override
     public void execute(Core core, String[] args) {
-        Deque<?> collection = core.getCollectionManager().getCollection();
-        if (collection.isEmpty()) {
-            System.out.println("Элементов нет, не могу вывести первый элемент");
-        } else {
-            System.out.println(collection.removeFirst());
-            core.getCollectionManager().sortCollection();
+        try {
+            if (args.length > 1) {
+                throw new RedundantArguments();
+            }
+            Deque<?> collection = core.getCollectionManager().getCollection();
+            if (collection.isEmpty()) {
+                System.out.println("Элементов нет, не могу вывести первый элемент");
+            } else {
+                System.out.println(collection.removeFirst());
+                core.getCollectionManager().sortCollection();
+            }
+        } catch (RedundantArguments e) {
+            System.out.println(e.printProblem(args));
         }
     }
 }

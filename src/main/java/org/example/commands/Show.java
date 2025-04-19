@@ -1,4 +1,6 @@
 package org.example.commands;
+
+import org.example.Exceptions.RedundantArguments;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 
@@ -12,15 +14,22 @@ public class Show implements Command {
 
     @Override
     public void execute(Core core, String[] args) {
-        Deque<?> collection = core.getCollectionManager().getCollection();
-        if (!collection.isEmpty()) {
-            for (Object element : collection) {
-                System.out.println("*******");
-                System.out.println(element);
-                System.out.println("*******");
+        try {
+            if (args.length > 1) {
+                throw new RedundantArguments();
             }
-        } else {
-            System.out.println("Элементов нет, сорь");
+            Deque<?> collection = core.getCollectionManager().getCollection();
+            if (!collection.isEmpty()) {
+                for (Object element : collection) {
+                    System.out.println("*******");
+                    System.out.println(element);
+                    System.out.println("*******");
+                }
+            } else {
+                System.out.println("Элементов нет, сорь");
+            }
+        } catch (RedundantArguments e) {
+            System.out.println(e.printProblem(args));
         }
     }
 }

@@ -19,10 +19,21 @@ public class Core {
         this.builder = builder;
     }
 
-    public CommandManager getCommandManager() {return commandManager;}
-    public CollectionManager<SpaceMarine> getCollectionManager() {return collectionManager;}
-    public IOManagable getIOManager() {return ioManager;}
-    public Builder getBuilder() {return builder;}
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
+
+    public CollectionManager<SpaceMarine> getCollectionManager() {
+        return collectionManager;
+    }
+
+    public IOManagable getIOManager() {
+        return ioManager;
+    }
+
+    public Builder getBuilder() {
+        return builder;
+    }
 
     public void startCore() {
         ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
@@ -32,5 +43,7 @@ public class Core {
         }
     }
 
-    public void endCore() {isOn = false;}
+    public void endCore() {
+        isOn = false;
+    }
 }

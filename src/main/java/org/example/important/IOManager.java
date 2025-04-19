@@ -1,5 +1,6 @@
 package org.example.important;
 
+
 import org.example.interfaces.Command;
 import org.example.interfaces.IOManagable;
 
@@ -50,12 +51,16 @@ public class IOManager implements IOManagable {
             T userInput = getDigit(function);
             if (condition.test(userInput)) {
                 num = userInput;
-            } else { printError("Ввод выполнен неверно, повторите.\n"); }
+            } else {
+                printError("Ввод выполнен неверно, повторите.\n");
+            }
         }
-    return num;
+        return num;
     }
 
-    public String getUserInputInstance() {return userInput;}
+    public String getUserInputInstance() {
+        return userInput;
+    }
 
     @Override
     public void printMessage(String message) {
