@@ -1,9 +1,10 @@
 package org.example;
 
-import org.example.important.*;
-import org.example.interfaces.*;
-import org.example.models.*;
 import org.example.commands.*;
+import org.example.important.*;
+import org.example.interfaces.FileManagable;
+import org.example.interfaces.IOManagable;
+import org.example.models.*;
 
 import java.time.LocalDate;
 import java.util.ArrayDeque;
@@ -26,9 +27,11 @@ public class Main {
                 new RemoveHead(), new RemoveLower(), new Save(), new Show(),
                 new SumOfHealth(), new Update());
         CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<>());
-        collectionManager.getCollection().add(new SpaceMarine( "sg", new Coordinates((long) 1, 1 ), LocalDate.now(), (long) 1, true, Weapon.GRAV_GUN, MeleeWeapon.CHAIN_SWORD, new Chapter("wef", 232, "erwger")));
+//        collectionManager.getCollection().add(new SpaceMarine("sg", new Coordinates((long) 1, 1), LocalDate.now(), (long) 1, true, Weapon.GRAV_GUN, MeleeWeapon.CHAIN_SWORD, new Chapter("wef", 232, "erwger")));
         IOManagable ioManager = new IOManager();
-        Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager));
+        FileManagable fileManager = new FileManager();
+        Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager), fileManager);
+//        new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json").delete();
         core.startCore();
     }
 }

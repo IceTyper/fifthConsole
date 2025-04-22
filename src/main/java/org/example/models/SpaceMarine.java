@@ -1,9 +1,11 @@
 package org.example.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class SpaceMarine implements Comparable<SpaceMarine> {
+public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
+    static private long ID = 1;
     private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -13,13 +15,12 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
     private Weapon weaponType; //Поле не может быть null
     private MeleeWeapon meleeWeapon; //Поле не может быть null
     private Chapter chapter; //Поле не может быть null
-    static private long ID = 1;
 
     {
         this.id = ID++;
     }
 
-    public SpaceMarine(String name, Coordinates coordinates, LocalDate creationDate, Long health, boolean loyal, Weapon weaponType,  MeleeWeapon meleeWeapon, Chapter chapter) {
+    public SpaceMarine(String name, Coordinates coordinates, LocalDate creationDate, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = LocalDate.now();
@@ -30,9 +31,77 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
         this.chapter = chapter;
     }
 
-    public Long getId() {return id;}
-    public MeleeWeapon getMeleeWeapon() {return meleeWeapon;}
-    public Long getHealth() {return health;}
+    public Long getId() {
+        return id;
+    }
+
+    public MeleeWeapon getMeleeWeapon() {
+        return meleeWeapon;
+    }
+
+    public void setMeleeWeapon(MeleeWeapon meleeWeapon) {
+        this.meleeWeapon = meleeWeapon;
+    }
+
+    public Long getHealth() {
+        return health;
+    }
+
+    public void setHealth(Long health) {
+        this.health = health;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public String getCreationDate() {
+        return creationDate.toString();
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Weapon getWeaponType() {
+        return weaponType;
+    }
+
+    public void setWeaponType(Weapon weaponType) {
+        this.weaponType = weaponType;
+    }
+
+    public Chapter getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
+    public boolean getLoyal() {
+        return loyal;
+    }
+
+    public void setLoyal(boolean loyal) {
+        this.loyal = loyal;
+    }
+
+    public long getID() {
+        return ID;
+    }
 
     @Override
     public String toString() {
@@ -49,6 +118,6 @@ public class SpaceMarine implements Comparable<SpaceMarine> {
 
     @Override
     public int compareTo(SpaceMarine o) {
-        return Long.compare(this.id, o.id);
+        return Long.compare(this.health, o.getHealth());
     }
 }

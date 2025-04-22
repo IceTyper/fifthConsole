@@ -1,0 +1,18 @@
+[
+  {
+    "id": 2,
+    "name": "df",
+    "coordinates": {
+      "x": 44444444,
+      "y": 4434
+    },
+    "creationDate": "2025-04-22",
+    "health": 54,
+    "loyal": false,
+    "chapter": {
+      "name": "rast",
+      "marinesCount": 54,
+      "world": "GUNDF"
+    }
+  }
+]
