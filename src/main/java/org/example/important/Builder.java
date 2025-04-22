@@ -1,4 +1,5 @@
 package org.example.important;
+
 import org.example.interfaces.IOManagable;
 import org.example.models.*;
 
@@ -13,7 +14,9 @@ public class Builder {
 
     private final IOManagable ioManager;
 
-    public Builder(IOManagable ioManager) {this.ioManager = ioManager;}
+    public Builder(IOManagable ioManager) {
+        this.ioManager = ioManager;
+    }
 
     public SpaceMarine buildSpacemarine() {
         ioManager.printMessage("Введите имя космического корабля: ");
@@ -30,6 +33,29 @@ public class Builder {
         MeleeWeapon meleeWeapon = buildMeleeWeapon();
         Chapter chapter = buildChapter();
         return new SpaceMarine(name, coords, LocalDate.now(), health, loyal, weaponType, meleeWeapon, chapter);
+    }
+
+    public void updateSpacemarine(SpaceMarine oldSpaceMarine) {
+        ioManager.printMessage("Введите имя космического корабля: ");
+        String name = ioManager.validateString(a -> (a != null && !a.trim().isEmpty()));
+        oldSpaceMarine.setName(name);
+        ioManager.printMessage("Теперь введите координаты: ");
+        Coordinates coords = buildCoordinates();
+        oldSpaceMarine.setCoordinates(coords);
+        ioManager.printMessage("Сколько жизней у вашего корабля? Зафиксируйте (здоровье > 0): ");
+        Long health = ioManager.validateDigit(Long::parseLong, a -> (a != null && a > 0));
+        oldSpaceMarine.setHealth(health);
+        ioManager.printMessage("Введите лояльность корабля (true или false): ");
+        boolean loyal = Boolean.parseBoolean(ioManager.validateString(a -> (Objects.equals(a, "false") || Objects.equals(a, "true"))));
+        oldSpaceMarine.setLoyal(loyal);
+        ioManager.printMessage("Выберите оружие (HEAVY_FLAMER, HEAVY_BOLT_GUN, GRAV_GUN): ");
+        Weapon weaponType = buildWeapon();
+        oldSpaceMarine.setWeaponType(weaponType);
+        ioManager.printMessage("Выберите холодное оружие (CHAIN_SWORD, LIGHTING_CLAW, POWER_FIST): ");
+        MeleeWeapon meleeWeapon = buildMeleeWeapon();
+        oldSpaceMarine.setMeleeWeapon(meleeWeapon);
+        Chapter chapter = buildChapter();
+        oldSpaceMarine.setChapter(chapter);
     }
 
     public Coordinates buildCoordinates() {

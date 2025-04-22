@@ -33,11 +33,8 @@ public class Update implements Command {
                     for (SpaceMarine spaceMarine : collection) {
                         if (spaceMarine.getId() == id) {
                             isFound = true;
-                            List<SpaceMarine> list = new ArrayList<>(collection);
-                            SpaceMarine updatedSpaceMarine = core.getBuilder().buildSpacemarine();
-                            list.set(list.indexOf(spaceMarine), updatedSpaceMarine);
-                            core.getCollectionManager().setCollection(new ArrayDeque<>(list));
-                            core.getIOManager().printMessage("Космический корабль успешно добавлен в коллекцию!");
+                            core.getBuilder().updateSpacemarine(spaceMarine);
+                            core.getIOManager().printMessage("Космический корабль успешно обновлён!");
                         }
                     }
                     if (!isFound) {
