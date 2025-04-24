@@ -8,10 +8,12 @@ import org.example.models.*;
 
 import java.time.LocalDate;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("введено: " + Arrays.toString(args));
         /*Weapon weapon = Weapon.HEAVY_FLAMER;
         Coordinates coords = new Coordinates((long) 5, 5);
         Deque<SpaceMarine> arrDeq = new ArrayDeque<>();
@@ -26,7 +28,7 @@ public class Main {
                 new Help(), new Info(), new PrintFieldAscendingHealth(), new RemoveById(),
                 new RemoveHead(), new RemoveLower(), new Save(), new Show(),
                 new SumOfHealth(), new Update());
-        CollectionManager<SpaceMarine> collectionManager = new CollectionManager<>(new ArrayDeque<>());
+        CollectionManager collectionManager = new CollectionManager(new ArrayDeque<>());
 //        collectionManager.getCollection().add(new SpaceMarine("sg", new Coordinates((long) 1, 1), LocalDate.now(), (long) 1, true, Weapon.GRAV_GUN, MeleeWeapon.CHAIN_SWORD, new Chapter("wef", 232, "erwger")));
         IOManagable ioManager = new IOManager();
         FileManagable fileManager = new FileManager();

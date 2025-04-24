@@ -11,18 +11,16 @@ import org.example.models.SpaceMarine;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.List;
 
 public class FileManager implements FileManagable {
     @Override
-    public void saveToFile(File file, CollectionManager<SpaceMarine> collectionManager) throws IOException {
+    public void saveToFile(File file, CollectionManager collectionManager) throws IOException {
         if (file == null) {
             throw new IllegalArgumentException();
         }
@@ -51,7 +49,7 @@ public class FileManager implements FileManagable {
     //Имя файла должно передаваться программе с помощью:**аргумент командной строки**.
     //Сделай java -jar джарник название файла
     @Override
-    public void readFromFile(File file, CollectionManager<SpaceMarine> collectionManager) {
+    public void readFromFile(File file, CollectionManager collectionManager) {
         if (file == null || !file.exists()) {
             return;
         }
@@ -61,13 +59,13 @@ public class FileManager implements FileManagable {
         try (BufferedInputStream bInput = new BufferedInputStream(new FileInputStream(file));
              InputStreamReader reader = new InputStreamReader(bInput, StandardCharsets.UTF_8);
         ) {
-            Type type = new TypeToken<CollectionManager<SpaceMarine>>() {}.getType();
+            Type type = new TypeToken<CollectionManager>() {
+            }.getType();
             List<SpaceMarine> collection = gson.fromJson(reader, type);
             collectionManager.setCollection(new ArrayDeque<>(collection));
             System.out.println("Данные из файла загружены и готовы к работе");
             file.delete();
         } catch (FileNotFoundException e) {
-            return;
         } catch (IOException e) {
             System.out.println("Данные из файлы загрузиться не сумели");
         }

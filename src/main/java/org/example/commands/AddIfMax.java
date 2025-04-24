@@ -20,7 +20,7 @@ public class AddIfMax implements Command {
             if (args.length > 1) {
                 throw new RedundantArguments();
             }
-            CollectionManager<SpaceMarine> collectionManager = core.getCollectionManager();
+            CollectionManager collectionManager = core.getCollectionManager();
             SpaceMarine marine = core.getBuilder().buildSpacemarine();
             if (marine.compareTo(collectionManager.getCollection().getFirst()) > 0) {
                 collectionManager.addElement(marine);

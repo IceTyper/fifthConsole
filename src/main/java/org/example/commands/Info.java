@@ -17,7 +17,7 @@ public class Info implements Command {
             if (args.length > 1) {
                 throw new RedundantArguments();
             }
-            CollectionManager<?> collectionManager = core.getCollectionManager();
+            CollectionManager collectionManager = core.getCollectionManager();
             core.getIOManager().printMessage("Дата инициализации коллекции: " + collectionManager.getCreationDate() +
                     "\nТип коллекции: " + collectionManager.getCollectionType().getSimpleName() +
                     "\nКоличество элементов в коллекции: " + collectionManager.getCollection().size());

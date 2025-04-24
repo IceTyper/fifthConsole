@@ -24,7 +24,7 @@ public class RemoveById implements Command {
                 try {
                     Long id = Long.parseLong(args[1]);
                     boolean flag = false;
-                    CollectionManager<SpaceMarine> cManager = core.getCollectionManager();
+                    CollectionManager cManager = core.getCollectionManager();
                     for (SpaceMarine spaceMarine : cManager.getCollection()) {
                         if (spaceMarine.getId().equals(id)) {
                             flag = true;

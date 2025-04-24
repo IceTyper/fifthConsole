@@ -19,7 +19,7 @@ public class Show implements Command {
                 throw new RedundantArguments();
             }
             Deque<?> collection = core.getCollectionManager().getCollection();
-            if (!collection.isEmpty()) {
+            if (!(collection == null || collection.isEmpty())) {
                 for (Object element : collection) {
                     System.out.println("*******");
                     System.out.println(element);

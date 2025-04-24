@@ -11,12 +11,12 @@ public class Core {
 
     private boolean isOn = true;
     private final CommandManager commandManager;
-    private final CollectionManager<SpaceMarine> collectionManager;
+    private final CollectionManager collectionManager;
     private final IOManagable ioManager;
     private final Builder builder;
     private final FileManagable fileManager;
 
-    public Core(CommandManager commandManager, CollectionManager<SpaceMarine> collectionManager, IOManagable ioManager, Builder builder, FileManagable fileManager) {
+    public Core(CommandManager commandManager, CollectionManager collectionManager, IOManagable ioManager, Builder builder, FileManagable fileManager) {
         this.commandManager = commandManager;
         this.collectionManager = collectionManager;
         this.ioManager = ioManager;
@@ -28,7 +28,7 @@ public class Core {
         return commandManager;
     }
 
-    public CollectionManager<SpaceMarine> getCollectionManager() {
+    public CollectionManager getCollectionManager() {
         return collectionManager;
     }
 
@@ -43,7 +43,7 @@ public class Core {
     public FileManagable getFileManager() {return fileManager;}
 
     public void startCore() {
-        //fileManager.readFromFile(new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json"), collectionManager);
+        fileManager.readFromFile(new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json"), collectionManager);
         ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
         while (isOn) {
             Command command = ioManager.checkInputForCommand(this);

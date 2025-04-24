@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public interface FileManagable {
-    void saveToFile(File file, CollectionManager<SpaceMarine> collectionManager) throws IOException;
-    void readFromFile(File file, CollectionManager<SpaceMarine> collectionManager);
+    void saveToFile(File file, CollectionManager collectionManager) throws IOException;
+    void readFromFile(File file, CollectionManager collectionManager);
 
 }

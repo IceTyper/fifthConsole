@@ -1,18 +1,50 @@
 [
   {
-    "id": 2,
-    "name": "df",
+    "id": 3,
+    "name": "wef",
     "coordinates": {
-      "x": 44444444,
-      "y": 4434
+      "x": 23,
+      "y": 23
     },
-    "creationDate": "2025-04-22",
-    "health": 54,
-    "loyal": false,
+    "creationDate": "2025-04-23",
+    "health": 1,
+    "loyal": true,
     "chapter": {
-      "name": "rast",
-      "marinesCount": 54,
-      "world": "GUNDF"
+      "name": "wef",
+      "marinesCount": 1,
+      "world": "212"
+    }
+  },
+  {
+    "id": 2,
+    "name": "aokpef",
+    "coordinates": {
+      "x": 23,
+      "y": 432
+    },
+    "creationDate": "2025-04-23",
+    "health": 124124,
+    "loyal": true,
+    "chapter": {
+      "name": "f",
+      "marinesCount": 23,
+      "world": "23"
+    }
+  },
+  {
+    "id": 1,
+    "name": "alwfp",
+    "coordinates": {
+      "x": 123,
+      "y": 12
+    },
+    "creationDate": "2025-04-23",
+    "health": 21,
+    "loyal": true,
+    "chapter": {
+      "name": "pwkfe",
+      "marinesCount": 23,
+      "world": "2"
     }
   }
 ]

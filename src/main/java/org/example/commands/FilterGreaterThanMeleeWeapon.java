@@ -24,7 +24,7 @@ public class FilterGreaterThanMeleeWeapon implements Command {
             }
             boolean flag = false;
             MeleeWeapon meleeWeapon = MeleeWeapon.getMeleeWeapon(args[1].toUpperCase());
-            CollectionManager<SpaceMarine> collectionManager = core.getCollectionManager();
+            CollectionManager collectionManager = core.getCollectionManager();
             for (SpaceMarine spaceMarine : collectionManager.getCollection()) {
                 if (spaceMarine.getMeleeWeapon().compareTo(meleeWeapon) > 0) {
                     flag = true;

@@ -19,7 +19,7 @@ public class SumOfHealth implements Command {
             if (args.length > 1) {
                 throw new RedundantArguments();
             }
-            CollectionManager<SpaceMarine> cManager = core.getCollectionManager();
+            CollectionManager cManager = core.getCollectionManager();
             if (cManager.getCollection().isEmpty()) {
                 System.out.println("Элементов нема");
             } else {
