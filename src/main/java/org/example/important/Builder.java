@@ -11,7 +11,6 @@ import java.util.Objects;
 
 public class Builder {
 
-
     private final IOManagable ioManager;
 
     public Builder(IOManagable ioManager) {
@@ -78,13 +77,13 @@ public class Builder {
 
     public Weapon buildWeapon() {
         List<String> weapons = Arrays.asList("HEAVY_FLAMER", "HEAVY_BOLT_GUN", "GRAV_GUN", "NONE");
-        String weaponType = ioManager.validateString(a -> weapons.contains(a.toUpperCase()));
+        String weaponType = ioManager.validateString(a -> weapons.contains(a.toUpperCase())).toUpperCase();
         return Weapon.getWeapon(weaponType);
     }
 
     public MeleeWeapon buildMeleeWeapon() {
         List<String> meleeWeapons = Arrays.asList("CHAIN_SWORD", "LIGHTING_CLAW", "POWER_FIST", "NONE");
-        String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a.toUpperCase()));
+        String meleeWeaponType = ioManager.validateString(a -> meleeWeapons.contains(a.toUpperCase())).toUpperCase();
         return MeleeWeapon.getMeleeWeapon(meleeWeaponType);
     }
 }

@@ -12,13 +12,17 @@ public enum Weapon {
         this.name = name;
     }
 
-    public static Weapon getWeapon(String name)  {
+    public static Weapon getWeapon(String name) {
         for (Weapon weapon : values()) {
-            if (weapon.name.equals(name)) {
+            if (weapon.getName().equals(name)) {
                 return weapon;
             }
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

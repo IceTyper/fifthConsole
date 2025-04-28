@@ -4,9 +4,7 @@ import org.example.commands.*;
 import org.example.important.*;
 import org.example.interfaces.FileManagable;
 import org.example.interfaces.IOManagable;
-import org.example.models.*;
 
-import java.time.LocalDate;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 
@@ -21,7 +19,6 @@ public class Main {
         arrDeq.add(ship);
         System.out.println(ship);
         System.out.println(arrDeq);*/
-
         CommandManager commandManager = new CommandManager();
         commandManager.addCommands(new Add(), new AddIfMax(), new Clear(),
                 new ExecuteScript(), new Exit(), new FilterGreaterThanMeleeWeapon(),
@@ -34,7 +31,11 @@ public class Main {
         FileManagable fileManager = new FileManager();
         Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager), fileManager);
 //        new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json").delete();
-        String[] a = {"collection.json"};
-        core.startCore(a);
+        String[] fileName = {"collection.json"};
+        if (args.length > 0) {
+            core.startCore(args);
+        } else {
+            core.startCore(fileName);
+        }
     }
 }

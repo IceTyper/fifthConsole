@@ -13,12 +13,16 @@ public enum MeleeWeapon {
     }
 
     public static MeleeWeapon getMeleeWeapon(String name) {
-        for (MeleeWeapon weapon : values()) {
-            if (weapon.name.equals(name)) {
+        for (MeleeWeapon weapon : MeleeWeapon.values()) {
+            if (weapon.getName().equals(name)) {
                 return weapon;
             }
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
