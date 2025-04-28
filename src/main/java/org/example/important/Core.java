@@ -42,8 +42,17 @@ public class Core {
 
     public FileManagable getFileManager() {return fileManager;}
 
-    public void startCore() {
-        fileManager.readFromFile(new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json"), collectionManager);
+    public void startCore(String[] args) {
+        if (args.length == 1) {
+            if (args[0].endsWith(".json")) {
+                if (args[0].contains("/")) {
+                    System.out.println("Не используйте / в названии (или не создавайте новых папок)");
+                } else {
+                    fileManager.readFromFile(new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/" + args[0]), collectionManager);
+                }
+            }
+        }
+
         ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
         while (isOn) {
             Command command = ioManager.checkInputForCommand(this);

@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 public class FileManager implements FileManagable {
@@ -56,13 +57,12 @@ public class FileManager implements FileManagable {
 
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
 
-        try (BufferedInputStream bInput = new BufferedInputStream(new FileInputStream(file));
-             InputStreamReader reader = new InputStreamReader(bInput, StandardCharsets.UTF_8);
+        try (BufferedInputStream bufferedInput = new BufferedInputStream(new FileInputStream(file));
+             InputStreamReader reader = new InputStreamReader(bufferedInput, StandardCharsets.UTF_8);
         ) {
-            Type type = new TypeToken<CollectionManager>() {
+            Type type = new TypeToken<ArrayDeque<SpaceMarine>> () {
             }.getType();
-            List<SpaceMarine> collection = gson.fromJson(reader, type);
-            collectionManager.setCollection(new ArrayDeque<>(collection));
+            collectionManager.setCollection(gson.fromJson(reader, type));
             System.out.println("Данные из файла загружены и готовы к работе");
             file.delete();
         } catch (FileNotFoundException e) {

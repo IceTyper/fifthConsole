@@ -34,6 +34,7 @@ public class Main {
         FileManagable fileManager = new FileManager();
         Core core = new Core(commandManager, collectionManager, ioManager, new Builder(ioManager), fileManager);
 //        new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json").delete();
-        core.startCore();
+        String[] a = {"collection.json"};
+        core.startCore(a);
     }
 }
