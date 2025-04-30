@@ -3,18 +3,17 @@ package org.example.important;
 import org.example.interfaces.Command;
 import org.example.interfaces.FileManagable;
 import org.example.interfaces.IOManagable;
-import org.example.models.SpaceMarine;
 
 import java.io.File;
 
 public class Core {
 
-    private boolean isOn = true;
     private final CommandManager commandManager;
     private final CollectionManager collectionManager;
     private final IOManagable ioManager;
     private final Builder builder;
     private final FileManagable fileManager;
+    private boolean isOn = true;
 
     public Core(CommandManager commandManager, CollectionManager collectionManager, IOManagable ioManager, Builder builder, FileManagable fileManager) {
         this.commandManager = commandManager;
@@ -40,7 +39,9 @@ public class Core {
         return builder;
     }
 
-    public FileManagable getFileManager() {return fileManager;}
+    public FileManagable getFileManager() {
+        return fileManager;
+    }
 
     public void startCore(String[] args) {
         if (args.length == 1) {
@@ -55,7 +56,14 @@ public class Core {
 
         ioManager.printMessage("Добро пожаловать в мою харчевню.\nДля списка команд напишите help");
         while (isOn) {
-            Command command = ioManager.checkInputForCommand(this);
+            Command command = null;
+            while (command == null) {
+                ioManager.setUserInputInstance(ioManager.getUserInput().toLowerCase());
+                command = ioManager.checkInputForCommand(this);
+                if (command == null) {
+                    System.out.println("Строка не опознана, повторите попытку.\n");
+                }
+            }
             command.execute(this, ioManager.getUserInputInstance().split(" "));
         }
     }

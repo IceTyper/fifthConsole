@@ -19,7 +19,9 @@ public interface IOManagable {
 
     void printMessage(String message);
 
-    public String getUserInputInstance();
+    String getUserInputInstance();
+
+    void setUserInputInstance(String input);
 
     Command checkInputForCommand(Core core);
 }
