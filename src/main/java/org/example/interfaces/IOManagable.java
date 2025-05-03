@@ -7,8 +7,6 @@ import java.util.function.Predicate;
 
 public interface IOManagable {
 
-    String getUserInput();
-
     String validateString(Predicate<String> condition);
 
     void printError(String errorMessage);

@@ -1,10 +1,11 @@
 package org.example.commands;
 
-import org.example.Exceptions.RedundantArguments;
+import org.example.Exceptions.RedundantArgumentsException;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 
 import java.util.Deque;
+import java.util.Scanner;
 
 public class Show implements Command {
     @Override
@@ -13,10 +14,10 @@ public class Show implements Command {
     }
 
     @Override
-    public void execute(Core core, String[] args) {
+    public void execute(Core core, Scanner scanner, String[] args) {
         try {
             if (args.length > 1) {
-                throw new RedundantArguments();
+                throw new RedundantArgumentsException();
             }
             Deque<?> collection = core.getCollectionManager().getCollection();
             if (!(collection == null || collection.isEmpty())) {
@@ -28,8 +29,8 @@ public class Show implements Command {
             } else {
                 System.out.println("Элементов нет, сорь");
             }
-        } catch (RedundantArguments e) {
-            System.out.println(e.printProblem(args));
+        } catch (RedundantArgumentsException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

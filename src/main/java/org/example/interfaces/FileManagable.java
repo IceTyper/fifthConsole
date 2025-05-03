@@ -9,5 +9,5 @@ import java.io.IOException;
 public interface FileManagable {
     void saveToFile(File file, CollectionManager collectionManager) throws IOException;
     void readFromFile(File file, CollectionManager collectionManager);
-
+//    String[] readCommandsFromFile(File file) throws IOException;
 }

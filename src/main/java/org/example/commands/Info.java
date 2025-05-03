@@ -1,9 +1,11 @@
 package org.example.commands;
 
-import org.example.Exceptions.RedundantArguments;
+import org.example.Exceptions.RedundantArgumentsException;
 import org.example.important.CollectionManager;
 import org.example.important.Core;
 import org.example.interfaces.Command;
+
+import java.util.Scanner;
 
 public class Info implements Command {
     @Override
@@ -12,17 +14,17 @@ public class Info implements Command {
     }
 
     @Override
-    public void execute(Core core, String[] args) {
+    public void execute(Core core, Scanner scanner, String[] args) {
         try {
             if (args.length > 1) {
-                throw new RedundantArguments();
+                throw new RedundantArgumentsException();
             }
             CollectionManager collectionManager = core.getCollectionManager();
             core.getIOManager().printMessage("Дата инициализации коллекции: " + collectionManager.getCreationDate() +
                     "\nТип коллекции: " + collectionManager.getCollectionType().getSimpleName() +
                     "\nКоличество элементов в коллекции: " + collectionManager.getCollection().size());
-        } catch (RedundantArguments e) {
-            System.out.println(e.printProblem(args));
+        } catch (RedundantArgumentsException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

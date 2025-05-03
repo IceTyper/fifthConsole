@@ -1,14 +1,12 @@
 package org.example.commands;
 
-import org.example.Exceptions.RedundantArguments;
+import org.example.Exceptions.RedundantArgumentsException;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 import org.example.models.SpaceMarine;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
+import java.util.Scanner;
 
 public class Update implements Command {
     @Override
@@ -18,10 +16,10 @@ public class Update implements Command {
     }
 
     @Override
-    public void execute(Core core, String[] args) {
+    public void execute(Core core, Scanner scanner, String[] args) {
         try {
             if (args.length > 2) {
-                throw new RedundantArguments();
+                throw new RedundantArgumentsException();
             }
             if (args.length == 1) {
                 System.out.println("Вы не ввели айдишник");
@@ -33,7 +31,7 @@ public class Update implements Command {
                     for (SpaceMarine spaceMarine : collection) {
                         if (spaceMarine.getId() == id) {
                             isFound = true;
-                            core.getBuilder().updateSpacemarine(spaceMarine);
+                            core.getBuilder().updateSpacemarine(spaceMarine, scanner);
                             core.getIOManager().printMessage("Космический корабль успешно обновлён!");
                         }
                     }
@@ -44,8 +42,8 @@ public class Update implements Command {
                     core.getIOManager().printError("Айдишник криво введён\n");
                 }
             }
-        } catch (RedundantArguments e) {
-            System.out.println(e.printProblem(args));
+        } catch (RedundantArgumentsException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

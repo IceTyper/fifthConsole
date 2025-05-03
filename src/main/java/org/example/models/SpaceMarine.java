@@ -103,6 +103,10 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
         return ID;
     }
 
+    public static void setID(Long id) {
+        ID = id;
+    }
+
     @Override
     public String toString() {
         return "id = " + id +

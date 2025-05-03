@@ -1,10 +1,12 @@
 package org.example.commands;
 
-import org.example.Exceptions.RedundantArguments;
+import org.example.Exceptions.RedundantArgumentsException;
 import org.example.important.CollectionManager;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 import org.example.models.SpaceMarine;
+
+import java.util.Scanner;
 
 public class AddIfMax implements Command {
     @Override
@@ -15,21 +17,21 @@ public class AddIfMax implements Command {
     }
 
     @Override
-    public void execute(Core core, String[] args) {
+    public void execute(Core core, Scanner scanner, String[] args) {
         try {
             if (args.length > 1) {
-                throw new RedundantArguments();
+                throw new RedundantArgumentsException();
             }
             CollectionManager collectionManager = core.getCollectionManager();
-            SpaceMarine marine = core.getBuilder().buildSpacemarine();
-            if (marine.compareTo(collectionManager.getCollection().getFirst()) > 0) {
+            SpaceMarine marine = core.getBuilder().buildSpacemarine(scanner);
+            if (marine.compareTo(collectionManager.getCollection().getLast()) > 0) {
                 collectionManager.addElement(marine);
                 System.out.println("Элемент добавлен");
             } else {
                 System.out.println("Элемент не соответствует условиям");
             }
-        } catch (RedundantArguments e) {
-            System.out.println(e.printProblem(args));
+        } catch (RedundantArgumentsException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

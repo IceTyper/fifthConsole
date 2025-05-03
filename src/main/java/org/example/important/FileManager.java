@@ -16,8 +16,6 @@ import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
 
 public class FileManager implements FileManagable {
     @Override
@@ -60,7 +58,7 @@ public class FileManager implements FileManagable {
         try (BufferedInputStream bufferedInput = new BufferedInputStream(new FileInputStream(file));
              InputStreamReader reader = new InputStreamReader(bufferedInput, StandardCharsets.UTF_8);
         ) {
-            Type type = new TypeToken<ArrayDeque<SpaceMarine>> () {
+            Type type = new TypeToken<ArrayDeque<SpaceMarine>>() {
             }.getType();
             collectionManager.setCollection(gson.fromJson(reader, type));
             System.out.println("Данные из файла загружены и готовы к работе");
@@ -71,6 +69,17 @@ public class FileManager implements FileManagable {
         }
 
     }
+
+    /*@Override
+    public String[] readCommandsFromFile(File file) throws IOException {
+        Reader bufferedReader = new BufferedReader(new FileReader(file));
+        char[] charBuffer = new char[1024];
+        bufferedReader.read(charBuffer);
+        System.out.println(Arrays.toString(charBuffer));
+        String[] str = charBuffer.toString().split("\n");
+        return Arrays.toString(str);
+
+    }*/
 
     static class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
         private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
