@@ -83,7 +83,6 @@ public class IOManager implements IOManagable {
     @Override
     public void setUserInputInstance(String input) {
         userInput = input;
-        System.out.println(userInput);
     }
 
     @Override

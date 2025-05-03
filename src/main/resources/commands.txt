@@ -1,5 +1,5 @@
 
-update 1
+add
 fgnrg
 34
 235
@@ -10,3 +10,7 @@ none
 nsrs
 437
 fsf
+show
+info
+remove_head
+execute_script commands.txt
