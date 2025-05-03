@@ -13,4 +13,4 @@ fsf
 show
 info
 remove_head
-execute_script commands.txt
+execute_script 2.txt

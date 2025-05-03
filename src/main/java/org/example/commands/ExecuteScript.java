@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.Exceptions.NotExistingFileException;
+import org.example.Exceptions.RecursionDangerException;
 import org.example.Exceptions.RedundantArgumentsException;
 import org.example.Exceptions.WrongArgumentException;
 import org.example.important.Core;
@@ -10,10 +11,13 @@ import org.example.interfaces.IOManagable;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ExecuteScript implements Command {
-    private Scanner bufferedReader = null;
+
+    private static ArrayList<String> commands = new ArrayList<>();
 
     @Override
     public String getDescription() {
@@ -32,10 +36,14 @@ public class ExecuteScript implements Command {
             if (args.length == 1 || !args[1].endsWith(".txt")) {
                 throw new NotExistingFileException();
             }
-            Scanner bReader = new Scanner(new BufferedReader(new FileReader("src/main/resources/" + args[1])));
-            bufferedReader = bReader;
+            if (commands.contains(args[1])) {
+                throw new RecursionDangerException();
+            }
+            commands.add(args[1]);
+            Scanner bufferedReader = new Scanner(new BufferedReader(new FileReader("src/main/resources/" + args[1])));
             String nextLine;
-            while ((nextLine = bufferedReader.nextLine()) != null) {
+            while (bufferedReader.hasNextLine()) {
+                nextLine = bufferedReader.nextLine();
                 if (nextLine == null || nextLine.isEmpty()) {
                     continue;
                 }
@@ -48,11 +56,13 @@ public class ExecuteScript implements Command {
                     command.execute(core, bufferedReader, nextLine.split(" "));
                 }
             }
+            commands.remove(args[1]);
             bufferedReader.close();
-        } catch (RedundantArgumentsException | IOException | NotExistingFileException e) {
+        } catch (RedundantArgumentsException | IOException | NotExistingFileException | RecursionDangerException e) {
             System.out.println(e.getMessage());
         } catch (WrongArgumentException e) {
             System.out.println("Команда введена неверно");
+        } catch (NoSuchElementException e) {
         }
     }
 }
