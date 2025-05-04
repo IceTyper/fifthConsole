@@ -21,9 +21,9 @@ public class Save implements Command {
                 throw new RedundantArgumentsException();
             }
             if (args.length == 2 && args[1].endsWith(".json")) {
-                core.getFileManager().saveToFile(new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/" + args[1]), core.getCollectionManager());
+                core.getFileManager().saveToFile(new File("src/main/resources/" + args[1]), core.getCollectionManager());
             } else {
-                core.getFileManager().saveToFile(new File("C:/Users/fmusa/IdeaProjects/fifthConsole/src/main/resources/collection.json"), core.getCollectionManager());
+                core.getFileManager().saveToFile(new File("src/main/resources/collection.json"), core.getCollectionManager());
             }
         } catch (RedundantArgumentsException e) {
             System.out.println(e.getMessage());
