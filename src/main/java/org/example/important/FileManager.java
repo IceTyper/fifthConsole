@@ -58,28 +58,15 @@ public class FileManager implements FileManagable {
         try (BufferedInputStream bufferedInput = new BufferedInputStream(new FileInputStream(file));
              InputStreamReader reader = new InputStreamReader(bufferedInput, StandardCharsets.UTF_8);
         ) {
-            Type type = new TypeToken<ArrayDeque<SpaceMarine>>() {
-            }.getType();
+            Type type = new TypeToken<ArrayDeque<SpaceMarine>>() {}.getType();
             collectionManager.setCollection(gson.fromJson(reader, type));
             System.out.println("Данные из файла загружены и готовы к работе");
-            file.delete();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException ignored) {
         } catch (IOException e) {
             System.out.println("Данные из файлы загрузиться не сумели");
         }
 
     }
-
-    /*@Override
-    public String[] readCommandsFromFile(File file) throws IOException {
-        Reader bufferedReader = new BufferedReader(new FileReader(file));
-        char[] charBuffer = new char[1024];
-        bufferedReader.read(charBuffer);
-        System.out.println(Arrays.toString(charBuffer));
-        String[] str = charBuffer.toString().split("\n");
-        return Arrays.toString(str);
-
-    }*/
 
     static class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
         private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;

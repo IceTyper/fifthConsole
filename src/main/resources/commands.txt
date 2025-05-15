@@ -1,4 +1,4 @@
-
+execute_script 2.txt
 add
 fgnrg
 34
@@ -13,4 +13,3 @@ fsf
 show
 info
 remove_head
-execute_script 2.txt
