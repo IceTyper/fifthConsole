@@ -1,0 +1,11 @@
+package client.exceptions;
+
+import java.io.IOException;
+
+public class InvalidStringException extends IOException {
+
+    @Override
+    public String getMessage() {
+        return super.getMessage() + "Строка введена неправильно";
+    }
+}
