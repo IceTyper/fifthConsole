@@ -6,6 +6,6 @@ public class InvalidStringException extends IOException {
 
     @Override
     public String getMessage() {
-        return super.getMessage() + "Строка введена неправильно";
+        return "Строка введена неправильно";
     }
 }
