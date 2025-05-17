@@ -1,19 +1,21 @@
 package org.example.models;
 
-public enum MeleeWeapon {
-    CHAIN_SWORD("CHAIN_SWORD"),
-    LIGHTING_CLAW("LIGHTING_CLAW"),
-    POWER_FIST("POWER_FIST"),
+import java.io.Serializable;
+
+public enum Weapon implements Serializable {
+    HEAVY_BOLTGUN("HEAVY_BOLT_GUN"),
+    GRAV_GUN("GRAV_GUN"),
+    HEAVY_FLAMER("HEAVY_FLAMER"),
     NOTHING("NONE");
 
     private final String name;
 
-    MeleeWeapon(String name) {
+    Weapon(String name) {
         this.name = name;
     }
 
-    public static MeleeWeapon getMeleeWeapon(String name) {
-        for (MeleeWeapon weapon : MeleeWeapon.values()) {
+    public static Weapon getWeapon(String name) {
+        for (Weapon weapon : values()) {
             if (weapon.getName().equals(name)) {
                 return weapon;
             }

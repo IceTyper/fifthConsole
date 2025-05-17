@@ -2,7 +2,6 @@ package org.example.commands;
 
 import org.example.Exceptions.NotExistingFileException;
 import org.example.Exceptions.RecursionDangerException;
-import org.example.Exceptions.RedundantArgumentsException;
 import org.example.Exceptions.WrongArgumentException;
 import org.example.important.Core;
 import org.example.interfaces.Command;

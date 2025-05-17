@@ -1,17 +1,15 @@
 package org.example.commands;
 
-import org.example.Exceptions.RedundantArgumentsException;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 
+import java.util.Deque;
 import java.util.Scanner;
 
-
-public class Help implements Command {
-
+public class Clear implements Command {
     @Override
     public String getDescription() {
-        return "help - вывод справки по доступным командам";
+        return "clear - очищение коллекции";
     }
 
     @Override
@@ -20,8 +18,12 @@ public class Help implements Command {
             if (args.length > 1) {
                 throw new RedundantArgumentsException();
             }
-            for (Command command : core.getCommandManager().getCommandsCollection().values()) {
-                System.out.println(command.getDescription());
+            Deque<?> collection = core.getCollectionManager().getCollection();
+            if (!collection.isEmpty()) {
+                collection.clear();
+                System.out.println("Чистка проведена успешно");
+            } else {
+                System.out.println("Элементы не найдены");
             }
         } catch (RedundantArgumentsException e) {
             System.out.println(e.getMessage());

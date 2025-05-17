@@ -1,15 +1,16 @@
 package org.example.commands;
 
-import org.example.Exceptions.RedundantArgumentsException;
 import org.example.important.Core;
 import org.example.interfaces.Command;
 
 import java.util.Scanner;
 
-public class Exit implements Command {
+
+public class Help implements Command {
+
     @Override
     public String getDescription() {
-        return "exit - завершение программы без сохранения в файл";
+        return "help - вывод справки по доступным командам";
     }
 
     @Override
@@ -18,10 +19,11 @@ public class Exit implements Command {
             if (args.length > 1) {
                 throw new RedundantArgumentsException();
             }
+            for (Command command : core.getCommandManager().getCommandsCollection().values()) {
+                System.out.println(command.getDescription());
+            }
         } catch (RedundantArgumentsException e) {
             System.out.println(e.getMessage());
         }
-        core.endCore();
-        System.out.println("Прощай, юзер!");
     }
 }

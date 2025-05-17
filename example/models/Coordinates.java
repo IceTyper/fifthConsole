@@ -1,6 +1,8 @@
 package org.example.models;
 
-public class Coordinates {
+import java.io.Serializable;
+
+public class Coordinates implements Serializable {
     private Long x; //Значение поля должно быть больше -483, Поле не может быть null
     private Integer y; //Значение поля должно быть больше -325, Поле не может быть null
 

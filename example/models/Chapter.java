@@ -1,6 +1,8 @@
 package org.example.models;
 
-public class Chapter {
+import java.io.Serializable;
+
+public class Chapter implements Serializable {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private long marinesCount; //Значение поля должно быть больше 0, Максимальное значение поля: 1000
     private String world; //Поле может быть null
