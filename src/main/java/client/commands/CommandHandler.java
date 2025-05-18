@@ -1,6 +1,4 @@
-package client;
-
-import client.commands.Command;
+package client.commands;
 
 import java.util.HashMap;
 import java.util.stream.Stream;

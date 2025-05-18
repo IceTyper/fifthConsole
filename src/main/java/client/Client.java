@@ -1,6 +1,7 @@
 package client;
 
 import client.commands.Add;
+import client.commands.CommandHandler;
 import client.commands.Exit;
 import client.exceptions.InvalidStringException;
 import client.io.IO;
