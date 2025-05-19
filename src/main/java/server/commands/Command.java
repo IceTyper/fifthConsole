@@ -1,7 +1,5 @@
 package server.commands;
 
-import server.commands.Help;
-
 import java.io.Serializable;
 import java.util.Queue;
 
@@ -23,11 +21,10 @@ public abstract class Command implements Serializable {
      *
      * @return Строка с описанием команды в формате:
      * "имя_команды {параметры} - описание функционала"
-     * @see Help
      */
     public abstract String getDescription();
 
-    public abstract void execute(String[] args);
+    public abstract void execute();
 
     public void setQueue(Queue<Object> queue) {
         this.queue = queue;

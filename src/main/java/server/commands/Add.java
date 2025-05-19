@@ -13,7 +13,7 @@ public class Add extends Command {
 
     //name, x, y, health, loyal, weaponType, meleeWeaponType, chapterName, marinesCount, world
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         String name = (String) queue.remove();
         long x = (long) queue.remove();
         int y = (int) queue.remove();
@@ -26,7 +26,7 @@ public class Add extends Command {
         String world = (String) queue.remove();
         CollectionControllable handler = new CollectionHandler();
         handler.addFirst(new SpaceMarine(name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world)));
+        MessageSendable msg = new MessageSender();
+        //msg.sendMessage(new String[]{"Элемент успешно добавлен в коллекицю!"});
     }
-
-
 }

@@ -1,7 +1,5 @@
 package server.commands;
 
-import server.commands.Command;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.stream.Stream;
@@ -33,7 +31,7 @@ public class CommandHandler {
     }
 
     public void executeCommand(String[] args) {
-        commands.get(args[0]).execute(Stream.of(args).skip(1).toArray(String[]::new));
+        commands.get(args[0]).execute();
     }
 
     public Collection<Command> getValues() {

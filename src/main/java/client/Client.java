@@ -1,8 +1,8 @@
 package client;
 
 import client.commands.Add;
-import client.commands.utility.CommandHandler;
 import client.commands.Exit;
+import client.commands.utility.CommandHandler;
 import client.exceptions.InvalidStringException;
 import client.io.IO;
 import client.io.IOController;
@@ -16,13 +16,8 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        try {
-            TCPConnection client = new TCPConnection(9057);
-            client.writeToServer("Test test yeaaaah");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         init();
+        connectWithServer();
         runLoop();
     }
 
@@ -45,10 +40,18 @@ public class Client {
     }
 
     private static void init() {
-
         CommandHandler commandHandler = CommandHandler.getInstance();
         commandHandler.addCommands(new Add(), new Exit());
+    }
 
+    public static void connectWithServer() {
+        try {
+            TCPConnection client = new TCPConnection(9057);
+            client.writeToServer("Test test yeaaaah");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
