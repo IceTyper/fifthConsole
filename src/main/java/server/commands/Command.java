@@ -1,4 +1,6 @@
-package client.commands;
+package server.commands;
+
+import server.commands.Help;
 
 import java.io.Serializable;
 import java.util.Queue;
@@ -14,13 +16,14 @@ import java.util.Queue;
  */
 public abstract class Command implements Serializable {
     protected Queue<Object> queue;
+
     /**
      * Возвращает текстовое описание назначения и синтаксиса команды.
      * Используется для вывода справочной информации пользователю (через команду Help).
      *
      * @return Строка с описанием команды в формате:
      * "имя_команды {параметры} - описание функционала"
-     * @see client.commands.Help
+     * @see Help
      */
     public abstract String getDescription();
 

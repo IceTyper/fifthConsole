@@ -1,7 +1,7 @@
 package client;
 
 import client.commands.Add;
-import client.commands.CommandHandler;
+import client.commands.utility.CommandHandler;
 import client.commands.Exit;
 import client.exceptions.InvalidStringException;
 import client.io.IO;
@@ -45,8 +45,10 @@ public class Client {
     }
 
     private static void init() {
+
         CommandHandler commandHandler = CommandHandler.getInstance();
         commandHandler.addCommands(new Add(), new Exit());
+
     }
 }
 

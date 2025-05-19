@@ -4,7 +4,7 @@ package client.commands;
 import client.Client;
 import client.exceptions.RedundantArgumentsException;
 
-public class Exit implements Command {
+public class Exit extends Command {
     @Override
     public String getDescription() {
         return "exit - завершение программы без сохранения в файл";

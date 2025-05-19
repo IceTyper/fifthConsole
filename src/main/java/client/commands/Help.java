@@ -1,14 +1,15 @@
 package client.commands;
 
 
+import client.commands.utility.CommandHandler;
 import client.exceptions.RedundantArgumentsException;
-import client.io.Handler;
 
-public class Add extends Command {
+
+public class Help extends Command {
 
     @Override
     public String getDescription() {
-        return "add {element} - добавление нового элемента в коллекцию";
+        return "help - вывод справки по доступным командам";
     }
 
     @Override
@@ -17,9 +18,9 @@ public class Add extends Command {
             if (args.length > 1) {
                 throw new RedundantArgumentsException();
             }
-            Add add = new Add();
-            add.setQueue(Handler.recordSpacemarineFields());
-
+            for (Command command : CommandHandler.getInstance().getValues()) {
+                System.out.println(command.getDescription());
+            }
         } catch (RedundantArgumentsException e) {
             System.out.println(e.getMessage());
         }
