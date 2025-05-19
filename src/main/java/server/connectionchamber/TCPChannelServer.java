@@ -1,7 +1,6 @@
 package server.connectionchamber;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
@@ -11,11 +10,11 @@ public class TCPChannelServer implements ServerConnectable {
 
     @Override
     public void start(int port) throws IOException {
-
+        serverSocket = ServerSocketChannel.open();
     }
 
     @Override
-    public void send(byte[] data, InetAddress inetAddress, int port) throws IOException {
+    public void send(byte[] data) throws IOException {
 
     }
 

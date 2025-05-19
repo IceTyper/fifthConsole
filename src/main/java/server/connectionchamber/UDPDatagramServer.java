@@ -2,7 +2,6 @@ package server.connectionchamber;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 
 public class UDPDatagramServer implements ServerConnectable {
     private DatagramSocket socket;
@@ -14,7 +13,7 @@ public class UDPDatagramServer implements ServerConnectable {
     }
 
     @Override
-    public void send(byte[] data, InetAddress inetAddress, int port) throws IOException {
+    public void send(byte[] data) throws IOException {
 
     }
 

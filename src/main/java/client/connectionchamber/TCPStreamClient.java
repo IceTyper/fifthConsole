@@ -12,19 +12,24 @@ public class TCPStreamClient implements ClientConnectable {
 
     @Override
     public void connect(String host, int port) throws IOException {
+        socket = new Socket(host, port);
+        outputStream = socket.getOutputStream();
+        inputStream = socket.getInputStream();
     }
 
     @Override
     public void send(byte[] data) throws IOException {
+        outputStream.write(data);
     }
 
 
     @Override
     public byte[] receive() throws IOException {
-        return new byte[0];
+        return inputStream.readAllBytes();
     }
 
     @Override
     public void close() throws IOException {
+        socket.close();
     }
 }

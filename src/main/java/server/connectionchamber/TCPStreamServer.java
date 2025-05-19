@@ -1,12 +1,11 @@
 package server.connectionchamber;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TCPStreamServer implements ServerConnectable {
-    private ServerSocket serverSocket;
+    private static ServerSocket serverSocket;
     private Socket clientSocket;
     private InputStream in;
     private OutputStream out;
@@ -19,7 +18,7 @@ public class TCPStreamServer implements ServerConnectable {
 
 
     @Override
-    public void send(byte[] data, InetAddress inetAddress, int port) throws IOException {
+    public void send(byte[] data) throws IOException {
 
     }
 

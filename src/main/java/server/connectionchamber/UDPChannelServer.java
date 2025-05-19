@@ -1,7 +1,6 @@
 package server.connectionchamber;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.nio.channels.DatagramChannel;
 
 public class UDPChannelServer implements ServerConnectable {
@@ -14,7 +13,7 @@ public class UDPChannelServer implements ServerConnectable {
     }
 
     @Override
-    public void send(byte[] data, InetAddress inetAddress, int port) throws IOException {
+    public void send(byte[] data) throws IOException {
 
     }
 
