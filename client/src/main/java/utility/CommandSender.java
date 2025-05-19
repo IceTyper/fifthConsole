@@ -1,7 +1,7 @@
-package client.commands.utility;
+package utility;
 
-import client.commands.Command;
-import client.connectionchamber.ClientConnectable;
+import commands.Command;
+import connectionchamber.ClientConnectable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

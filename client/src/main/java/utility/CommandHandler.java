@@ -1,6 +1,6 @@
-package client.commands.utility;
+package utility;
 
-import client.commands.Command;
+import commands.Command;
 
 import java.util.Collection;
 import java.util.HashMap;
