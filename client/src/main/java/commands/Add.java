@@ -12,16 +12,11 @@ public class Add extends Command {
     }
 
     @Override
-    public void execute(String[] args) {
-        try {
-            if (args.length > 1) {
-                throw new RedundantArgumentsException();
-            }
-            Add add = new Add();
-            add.setQueue(Handler.recordSpacemarineFields());
-
-        } catch (RedundantArgumentsException e) {
-            System.out.println(e.getMessage());
+    public void execute(String[] args) throws RedundantArgumentsException {
+        if (args.length > 1) {
+            throw new RedundantArgumentsException();
         }
+        Add add = new Add();
+        add.setQueue(Handler.recordSpacemarineFields());
     }
 }

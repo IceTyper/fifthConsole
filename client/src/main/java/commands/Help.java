@@ -1,8 +1,8 @@
 package commands;
 
 
-import utility.CommandHandler;
 import exceptions.RedundantArgumentsException;
+import utility.CommandHandler;
 
 
 public class Help extends Command {
@@ -13,16 +13,12 @@ public class Help extends Command {
     }
 
     @Override
-    public void execute(String[] args) {
-        try {
-            if (args.length > 1) {
-                throw new RedundantArgumentsException();
-            }
-            for (Command command : CommandHandler.getInstance().getValues()) {
-                System.out.println(command.getDescription());
-            }
-        } catch (RedundantArgumentsException e) {
-            System.out.println(e.getMessage());
+    public void execute(String[] args) throws RedundantArgumentsException {
+        if (args.length > 1) {
+            throw new RedundantArgumentsException();
+        }
+        for (Command command : CommandHandler.getInstance().getValues()) {
+            System.out.println(command.getDescription());
         }
     }
 }

@@ -1,5 +1,7 @@
 package commands;
 
+import exceptions.RedundantArgumentsException;
+
 import java.io.Serializable;
 import java.util.Queue;
 
@@ -24,7 +26,7 @@ public abstract class Command implements Serializable {
      */
     public abstract String getDescription();
 
-    public abstract void execute(String[] args);
+    public abstract void execute(String[] args) throws RedundantArgumentsException;
 
     public void setQueue(Queue<Object> queue) {
         this.queue = queue;
