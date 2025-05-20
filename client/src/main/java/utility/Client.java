@@ -1,10 +1,17 @@
 package utility;
 
 import commands.Add;
+import commands.Command;
 import commands.Exit;
+import commands.Help;
+import connectionchamber.ClientConnectable;
+import connectionchamber.TCPStreamClient;
 import exceptions.InvalidStringException;
+import exceptions.RedundantArgumentsException;
 import io.IO;
 import io.IOController;
+
+import java.io.IOException;
 
 
 public class Client {
@@ -16,11 +23,11 @@ public class Client {
 
     public static void main(String[] args) {
         init();
-        connectWithServer();
-        runLoop();
+        ClientConnectable client = connectWithServer("localhost", 5757);
+        runLoop(client);
     }
 
-    private static void runLoop() {
+    private static void runLoop(ClientConnectable client) {
         System.out.println("Приложение запущено и готово к работе");
         IO io = IOController.getInstance();
         CommandHandler commandHandler = CommandHandler.getInstance();
@@ -32,7 +39,14 @@ public class Client {
                     throw new InvalidStringException();
                 }
                 commandHandler.executeCommand(line);
+                Command command = commandHandler.getCommand(line[0]);
+                CommandSendable sender = new CommandSender();
+                if (!(command instanceof Help)) {
+                    sender.sendCommandToServer(command, client);
+                }
             } catch (InvalidStringException e) {
+                System.out.println(e.getMessage());
+            } catch (RedundantArgumentsException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -40,17 +54,20 @@ public class Client {
 
     private static void init() {
         CommandHandler commandHandler = CommandHandler.getInstance();
-        commandHandler.addCommands(new Add(), new Exit());
+        commandHandler.addCommands(new Add(), new Exit(), new Help());
     }
 
-    public static void connectWithServer() {
+    public static ClientConnectable connectWithServer(String host, int port) {
+        ClientConnectable client = new TCPStreamClient();
         try {
-            TCPConnection client = new TCPConnection(9057);
-            client.writeToServer("Test test yeaaaah");
-        } catch (Exception e) {
+            client.connect(host, port);
+            System.out.println("Коннект с сервером установлен");
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return client;
     }
 }
+
 
 

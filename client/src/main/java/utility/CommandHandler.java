@@ -39,4 +39,8 @@ public class CommandHandler {
     public Collection<Command> getValues() {
         return commands.values();
     }
+
+    public Command getCommand(String command) {
+        return commands.get(command);
+    }
 }
