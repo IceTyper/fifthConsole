@@ -1,12 +1,13 @@
-package connectionchamber;
+package connectionchamber.useless;
+
+import connectionchamber.ClientConnectable;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.DatagramChannel;
+import java.nio.channels.SocketChannel;
 
-public class UDPChannelClient implements ClientConnectable {
-    private DatagramChannel channel;
-    private InetSocketAddress address;
+public class TCPChannelClient implements ClientConnectable {
+    private SocketChannel socket;
+
 
     @Override
     public void connect(String host, int port) throws IOException {

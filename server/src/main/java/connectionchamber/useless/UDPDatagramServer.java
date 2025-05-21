@@ -1,4 +1,6 @@
-package connectionchamber;
+package connectionchamber.useless;
+
+import connectionchamber.ServerConnectable;
 
 import java.io.IOException;
 import java.net.DatagramSocket;

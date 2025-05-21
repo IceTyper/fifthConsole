@@ -1,4 +1,6 @@
-package connectionchamber;
+package connectionchamber.useless;
+
+import connectionchamber.ServerConnectable;
 
 import java.io.*;
 import java.net.ServerSocket;

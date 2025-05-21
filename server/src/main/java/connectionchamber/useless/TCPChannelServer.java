@@ -1,5 +1,6 @@
-package connectionchamber;
+package connectionchamber.useless;
 
+import connectionchamber.ServerConnectable;
 import utility.Server;
 
 import java.io.IOException;

@@ -5,7 +5,7 @@ import commands.Command;
 import commands.Exit;
 import commands.Help;
 import connectionchamber.ClientConnectable;
-import connectionchamber.TCPStreamClient;
+import connectionchamber.UDPDatagramClient;
 import exceptions.InvalidStringException;
 import exceptions.RedundantArgumentsException;
 import io.IO;
@@ -22,6 +22,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
+        //won't work
         init();
         ClientConnectable client = connectWithServer("localhost", 5757);
         runLoop(client);
@@ -58,14 +59,7 @@ public class Client {
     }
 
     public static ClientConnectable connectWithServer(String host, int port) {
-        ClientConnectable client = new TCPStreamClient();
-        try {
-            client.connect(host, port);
-            System.out.println("Коннект с сервером установлен");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return client;
+        return new UDPDatagramClient();
     }
 }
 

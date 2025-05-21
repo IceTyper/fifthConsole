@@ -1,4 +1,6 @@
-package connectionchamber;
+package connectionchamber.useless;
+
+import connectionchamber.ClientConnectable;
 
 import java.io.IOException;
 import java.io.InputStream;
