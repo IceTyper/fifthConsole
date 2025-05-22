@@ -1,6 +1,4 @@
-package utility;
-
-import models.SpaceMarine;
+package collection.models;
 
 import java.time.LocalDateTime;
 import java.util.Deque;

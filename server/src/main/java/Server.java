@@ -1,8 +1,3 @@
-package utility;
-
-import connectionchamber.ServerConnectable;
-
-
 public class Server {
     public static final int PORT = 9057;
 

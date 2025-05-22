@@ -1,7 +1,6 @@
 package connectionchamber.useless;
 
 import connectionchamber.ServerConnectable;
-import utility.Server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -10,17 +9,16 @@ import java.nio.channels.SocketChannel;
 
 public class TCPChannelServer implements ServerConnectable {
     private static ServerSocketChannel serverSocket;
-    private SocketChannel socket;
 
     static {
-        try {
-            serverSocket = ServerSocketChannel.open();
-            serverSocket.bind(new InetSocketAddress(Server.PORT));
-            serverSocket.configureBlocking(false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        /*
+        serverSocket = ServerSocketChannel.open();
+        serverSocket.bind(new InetSocketAddress(Server.PORT));
+        serverSocket.configureBlocking(false);
+        */
     }
+
+    private SocketChannel socket;
 
     @Override
     public void start(int port) throws IOException {

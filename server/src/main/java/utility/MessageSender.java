@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+//won't work
 public class MessageSender implements MessageSendable {
     @Override
     public Command acceptMessage(ServerConnectable server, String[] args) {

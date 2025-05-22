@@ -1,8 +1,7 @@
-package models;
+package collection.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Queue;
 
 
 public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {

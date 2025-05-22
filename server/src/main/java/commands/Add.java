@@ -1,8 +1,6 @@
 package commands;
 
-import utility.CollectionControllable;
-import utility.CollectionHandler;
-import models.*;
+import collection.models.*;
 import utility.MessageSendable;
 import utility.MessageSender;
 

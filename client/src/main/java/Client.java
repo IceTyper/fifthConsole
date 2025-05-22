@@ -12,7 +12,6 @@ import io.IOController;
 public class Client {
 
     public static void main(String[] args) {
-        //won't work
         init();
         //ClientConnectable client = connectWithServer("localhost", 5757);
         runLoop(new UDPDatagramClient());
