@@ -1,9 +1,15 @@
 package commands;
 
 import exceptions.RedundantArgumentsException;
-import utility.Client;
+
 
 public class Exit extends Command {
+    private static boolean isRunningClient = true;
+
+    public static boolean isRunningClient() {
+        return isRunningClient;
+    }
+
     @Override
     public String getDescription() {
         return "exit - завершение программы без сохранения в файл";
@@ -14,7 +20,7 @@ public class Exit extends Command {
         if (args.length > 1) {
             throw new RedundantArgumentsException();
         }
-        Client.endClient();
+        isRunningClient = false;
         System.out.println("Прощай, юзер!");
     }
 }

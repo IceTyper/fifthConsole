@@ -1,50 +1,32 @@
-package utility;
-
-import commands.Add;
-import commands.Command;
+import commands.CommandHandler;
 import commands.Exit;
-import commands.Help;
 import connectionchamber.ClientConnectable;
+import connectionchamber.Message;
 import connectionchamber.UDPDatagramClient;
 import exceptions.InvalidStringException;
 import exceptions.RedundantArgumentsException;
 import io.IO;
 import io.IOController;
 
-import java.io.IOException;
-
 
 public class Client {
-    private static boolean isRunningClient = true;
-
-    public static void endClient() {
-        isRunningClient = false;
-    }
 
     public static void main(String[] args) {
         //won't work
         init();
-        ClientConnectable client = connectWithServer("localhost", 5757);
-        runLoop(client);
+        //ClientConnectable client = connectWithServer("localhost", 5757);
+        runLoop(new UDPDatagramClient());
     }
 
     private static void runLoop(ClientConnectable client) {
         System.out.println("Приложение запущено и готово к работе");
         IO io = IOController.getInstance();
-        CommandHandler commandHandler = CommandHandler.getInstance();
-        while (isRunningClient) {
+        while (Exit.isRunningClient()) {
             try {
                 System.out.println("Введите команду");
                 String[] line = io.readConsoleLine().split(" ");
-                if (!commandHandler.checkIfContains(line[0])) {
-                    throw new InvalidStringException();
-                }
-                commandHandler.executeCommand(line);
-                Command command = commandHandler.getCommand(line[0]);
-                CommandSendable sender = new CommandSender();
-                if (!(command instanceof Help)) {
-                    sender.sendCommandToServer(command, client);
-                }
+                Message msg = CommandHandler.executeCommand(line);
+                System.out.println("мэссадж пойман");
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());
             } catch (RedundantArgumentsException e) {
@@ -54,8 +36,9 @@ public class Client {
     }
 
     private static void init() {
-        CommandHandler commandHandler = CommandHandler.getInstance();
-        commandHandler.addCommands(new Add(), new Exit(), new Help());
+        CommandHandler.addCommands("Help", "Add", "Exit", "AddIfMax", "Clear", "ExecuteScript",
+                "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
+                "Show", "SumOfHealth", "Update");
     }
 
     public static ClientConnectable connectWithServer(String host, int port) {

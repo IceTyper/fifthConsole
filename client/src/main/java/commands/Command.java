@@ -15,20 +15,15 @@ import java.util.Queue;
  * @author IceTyper
  */
 public abstract class Command implements Serializable {
-    protected Queue<Object> queue;
     /**
      * Возвращает текстовое описание назначения и синтаксиса команды.
      * Используется для вывода справочной информации пользователю (через команду Help).
      *
      * @return Строка с описанием команды в формате:
      * "имя_команды {параметры} - описание функционала"
-     * @see commands.Help
      */
     public abstract String getDescription();
 
     public abstract void execute(String[] args) throws RedundantArgumentsException;
 
-    public void setQueue(Queue<Object> queue) {
-        this.queue = queue;
-    }
 }

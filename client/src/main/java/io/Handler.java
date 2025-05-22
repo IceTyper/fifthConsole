@@ -11,7 +11,7 @@ public class Handler {
     private static PrintStream out = System.out;
     private final IOController io = IOController.getInstance();
 
-    public static Queue<Object> recordSpacemarineFields() {
+    public static Object[] recordSpacemarineFields() {
         out.println("Введите имя: ");
         String name = validateString(a -> a != null && !a.trim().isEmpty());
         out.println("Введите координаты:");
@@ -39,8 +39,7 @@ public class Handler {
         out.println("Введите название мира: ");
         String world = validateString(a -> (!a.trim().isEmpty()));
 
-
-        return new LinkedList<>(Arrays.asList(name, x, y, health, loyal, weaponType, meleeWeaponType, chapterName, marinesCount, world));
+        return new Object[] {name, x, y, health, loyal, weaponType, meleeWeaponType, chapterName, marinesCount, world};
     }
 }
 
