@@ -7,7 +7,10 @@ import exceptions.UnableToBuildElementException;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public interface ExceptionHandlingValidator extends Validator {
+public class ExceptionHandlingValidator implements Validator {
+    private ExceptionHandlingValidator() {
+    }
+
     static String validateString(Predicate<String> predicate) throws UnableToBuildElementException {
         IO io = IOController.getInstance();
         while (true) {
