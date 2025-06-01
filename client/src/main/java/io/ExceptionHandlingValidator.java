@@ -8,10 +8,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class ExceptionHandlingValidator implements Validator {
-    private ExceptionHandlingValidator() {
-    }
 
-    static String validateString(Predicate<String> predicate) throws UnableToBuildElementException {
+
+    public String validateString(Predicate<String> predicate) throws UnableToBuildElementException {
         IO io = IOController.getInstance();
         while (true) {
             try {
@@ -38,7 +37,7 @@ public class ExceptionHandlingValidator implements Validator {
         }
     }
 
-    static <T extends Number> T validateDigit(Function<String, T> function, Predicate<T> predicate) throws UnableToBuildElementException {
+    public <T extends Number> T validateDigit(Function<String, T> function, Predicate<T> predicate) throws UnableToBuildElementException {
         IO io = IOController.getInstance();
         while (true) {
             try {
