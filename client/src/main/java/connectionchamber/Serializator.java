@@ -1,3 +1,5 @@
+package connectionchamber;
+
 import java.io.*;
 
 public class Serializator {
