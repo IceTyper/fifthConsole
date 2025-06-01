@@ -7,7 +7,7 @@ import exceptions.InvalidStringException;
 import exceptions.RedundantArgumentsException;
 import io.IO;
 import io.IOController;
-import io.Serializator;
+import connectionchamber.Serializator;
 
 import java.io.IOException;
 
@@ -36,14 +36,14 @@ public class Client {
                 Serializator serializator = new Serializator();
                 byte[] byteMsg = serializator.serialize(msg);
                 client.send(byteMsg);
-                byte[] byteReceivedMsg = client.receive();
-                Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
-                System.out.println(receivedMsg);
+                //byte[] byteReceivedMsg = client.receive();
+                //Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
+                //System.out.println(receivedMsg);
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());
             } catch (RedundantArgumentsException e) {
                 System.out.println(e.getMessage());
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -64,3 +64,4 @@ public class Client {
         return client;
     }
 }
+

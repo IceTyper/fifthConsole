@@ -122,6 +122,6 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
 
     @Override
     public int compareTo(SpaceMarine o) {
-        return this.health.compareTo(o.getHealth());
+        return this.name.compareTo(o.getName());
     }
 }
