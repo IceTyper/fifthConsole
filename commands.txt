@@ -1,4 +1,3 @@
-execute_script 2.txt
 add
 fgnrg
 34
@@ -10,6 +9,3 @@ none
 nsrs
 437
 fsf
-show
-info
-remove_head
