@@ -1,31 +1,38 @@
+package utility;
+
 import commands.CommandHandler;
 import commands.Exit;
 import connectionchamber.ClientConnectable;
 import connectionchamber.Message;
+import connectionchamber.Serializator;
 import connectionchamber.UDPDatagramClient;
 import exceptions.InvalidStringException;
 import exceptions.RedundantArgumentsException;
 import io.IO;
 import io.IOController;
-import connectionchamber.Serializator;
 
 import java.io.IOException;
 
 
 public class Client {
+    private static ClientConnectable client;
+
+    public static ClientConnectable getClient() {
+        return client;
+    }
 
     public static void main(String[] args) {
         try {
-            ClientConnectable client = connectWithServer("localhost");
+            client = connectWithServer("localhost");
             init();
-            runLoop(client);
+            runLoop();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Не удалось поймать коннект с сервером");
         }
     }
 
-    private static void runLoop(ClientConnectable client) {
+    private static void runLoop() {
         System.out.println("Приложение запущено и готово к работе");
         IO io = IOController.getInstance();
         while (Exit.isRunningClient()) {
@@ -33,17 +40,19 @@ public class Client {
                 System.out.println("Введите команду");
                 String[] line = io.readConsoleLine().split(" ");
                 Message msg = CommandHandler.executeCommand(line);
-                Serializator serializator = new Serializator();
-                byte[] byteMsg = serializator.serialize(msg);
-                client.send(byteMsg);
-                //byte[] byteReceivedMsg = client.receive();
-                //Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
-                //System.out.println(receivedMsg);
+                if (msg != null) {
+                    Serializator serializator = new Serializator();
+                    byte[] byteMsg = serializator.serialize(msg);
+                    client.send(byteMsg);
+                    byte[] byteReceivedMsg = client.receive();
+                    Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
+                    System.out.println("received: " + receivedMsg);
+                }
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());
             } catch (RedundantArgumentsException e) {
                 System.out.println(e.getMessage());
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
