@@ -2,7 +2,7 @@ package io;
 
 import java.util.Scanner;
 
-public final class IOController implements IO {
+public class IOController implements IO {
     private static IOController instance;
     private Scanner fileScanner = null;
     private final Scanner defaultScanner = new Scanner(System.in);
