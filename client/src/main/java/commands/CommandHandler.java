@@ -54,7 +54,8 @@ public class CommandHandler {
             throw new RedundantArgumentsException();
         }
         if (ifAdd) {
-            return new Message(args[0], new Handler().recordSpacemarineFields());
+            Message msg = new Message(args[0], new Handler().recordSpacemarineFields());
+            return msg;
         }
         if (ifTwoArgsNeeded) {
             return new Message(args[0], new String[]{args[1]});
