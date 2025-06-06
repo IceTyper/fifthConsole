@@ -7,9 +7,9 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class UDPDatagramClient implements ClientConnectable {
-    private DatagramSocket socket;
+    private DatagramSocket socket = new DatagramSocket();
     private InetAddress address;
-    private int port;
+    private int port = 9898;
 
     public UDPDatagramClient() throws SocketException {
         socket = new DatagramSocket();
@@ -23,15 +23,20 @@ public class UDPDatagramClient implements ClientConnectable {
 
     @Override
     public void send(byte[] data) throws IOException {
+        System.out.println("Отправляем запрос серверу...");
         DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
         socket.send(packet);
     }
 
     @Override
-    public byte[] receive() {
+    public byte[] receive() throws IOException {
+        System.out.println("Ждём ответ от сервера...");
         byte[] buffer = new byte[4096];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-        return buffer;
+        socket.receive(packet);
+        byte[] received = packet.getData();
+        System.out.println("Ответ получен!");
+        return received;
     }
 
     @Override
