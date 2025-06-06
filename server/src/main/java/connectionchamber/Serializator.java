@@ -12,10 +12,11 @@ public class Serializator {
         }
     }
 
-    public Serializable deserialize(byte[] buffer) throws IOException, ClassNotFoundException {
+    public Message deserialize(byte[] buffer) throws IOException, ClassNotFoundException {
         try (ByteArrayInputStream byteIn = new ByteArrayInputStream(buffer);
         ObjectInputStream in = new ObjectInputStream(byteIn)) {
-            return (Serializable) in.readObject();
+            Object message = in.readObject();
+            return (Message) message;
         }
     }
 }

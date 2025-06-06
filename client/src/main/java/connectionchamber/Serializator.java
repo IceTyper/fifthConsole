@@ -14,7 +14,7 @@ public class Serializator {
 
     public Serializable deserialize(byte[] buffer) throws IOException, ClassNotFoundException {
         try (ByteArrayInputStream byteIn = new ByteArrayInputStream(buffer);
-        ObjectInputStream in = new ObjectInputStream(byteIn)) {
+             ObjectInputStream in = new ObjectInputStream(byteIn)) {
             return (Serializable) in.readObject();
         }
     }
