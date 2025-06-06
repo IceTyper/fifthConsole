@@ -2,14 +2,20 @@ package commands;
 
 
 import connectionchamber.Message;
+import connectionchamber.Serializator;
 import exceptions.NotExistingFileException;
 import exceptions.RecursionDangerException;
+import io.IO;
+import io.IOController;
+import utility.Client;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
  * Команда для выполнения скрипта из указанного файла.
@@ -57,21 +63,30 @@ public class ExecuteScript extends Command {
                 throw new RecursionDangerException();
             }
             commands.add(args[1]);
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(args[1]));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(Paths.get(args[1]).toFile()));
+            IO io = IOController.getInstance();
+            io.selectScanner(new Scanner(bufferedReader));
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
-                if (nextLine.isEmpty()) {
-                    continue;
+                if (!(nextLine.isEmpty())) {
+                    Message msg = CommandHandler.executeCommand(new String[]{nextLine});
+                    Serializator serializator = new Serializator();
+                    byte[] byteMsg = serializator.serialize(msg);
+                    Client.getClient().send(byteMsg);
+                    byte[] byteReceivedMsg = Client.getClient().receive();
+                    Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
+                    System.out.println("received: " + receivedMsg);
                 }
-                Message msg = CommandHandler.executeCommand(nextLine.split(" "));
-                System.out.println("msg: " + msg);
             }
             commands.remove(args[1]);
+            io.selectConsoleScanner();
             bufferedReader.close();
         } catch (NotExistingFileException | RecursionDangerException e) {
             System.out.println(e.getMessage());
-        } catch (NoSuchElementException | IOException e) {
+        } catch (NoSuchElementException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            commands.clear();
         }
     }
 }
