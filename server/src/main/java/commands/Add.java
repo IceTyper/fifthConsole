@@ -3,10 +3,11 @@ package commands;
 import collection.models.*;
 import collection.models.utility.CollectionControllable;
 import collection.models.utility.CollectionHandler;
-import utility.MessageSendable;
-import utility.MessageSender;
+
+import java.util.ArrayDeque;
 
 public class Add extends Command {
+    private static CollectionControllable handler = new CollectionHandler();
 
     @Override
     public String getDescription() {
@@ -15,20 +16,20 @@ public class Add extends Command {
 
     //name, x, y, health, loyal, weaponType, meleeWeaponType, chapterName, marinesCount, world
     @Override
-    public void execute() {
+    public String execute() {
         String name = (String) queue.remove();
         long x = (long) queue.remove();
         int y = (int) queue.remove();
         long health = (long) queue.remove();
         boolean loyal = (boolean) queue.remove();
-        Weapon weapon = (Weapon) queue.remove();
-        MeleeWeapon meleeWeapon = (MeleeWeapon) queue.remove();
+        Weapon weapon = Weapon.getWeapon((String) queue.remove());
+        MeleeWeapon meleeWeapon = MeleeWeapon.getMeleeWeapon((String) queue.remove());
         String chapterName = (String) queue.remove();
         long marinesCount = (long) queue.remove();
         String world = (String) queue.remove();
-        CollectionControllable handler = new CollectionHandler();
-        handler.addFirst(new SpaceMarine(name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world)));
-        MessageSendable msg = new MessageSender();
-        //msg.sendMessage(new String[]{"Элемент успешно добавлен в коллекицю!"});
+        ArrayDeque<SpaceMarine> collection = (ArrayDeque<SpaceMarine>) handler.getCollection();
+        int size = collection.size();
+        handler.getCollection().addFirst(new SpaceMarine(name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world)));
+        return !(size == collection.size()) ? "Элемент успешно добавлен в коллекцию!" : "Добавление элемента провалилось";
     }
 }
