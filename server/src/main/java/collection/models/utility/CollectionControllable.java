@@ -14,10 +14,4 @@ public interface CollectionControllable {
     LocalDateTime getCreationDate();
 
     int size();
-
-    void addFirst(SpaceMarine spaceMarine);
-
-    void addLast(SpaceMarine spaceMarine);
-
-    void removeFirst();
 }
