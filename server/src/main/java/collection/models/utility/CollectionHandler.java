@@ -8,7 +8,12 @@ import java.util.Deque;
 import java.util.stream.Collectors;
 
 public class CollectionHandler implements CollectionControllable {
+    private static final LocalDateTime creationDate;
     private static Deque<SpaceMarine> collection = new ArrayDeque<>();
+
+    static {
+        creationDate = LocalDateTime.now();
+    }
 
     @Override
     public Deque<SpaceMarine> getCollection() {
@@ -23,26 +28,11 @@ public class CollectionHandler implements CollectionControllable {
 
     @Override
     public LocalDateTime getCreationDate() {
-        return null;
+        return creationDate;
     }
 
     @Override
     public int size() {
-        return 0;
-    }
-
-    @Override
-    public void addFirst(SpaceMarine spaceMarine) {
-
-    }
-
-    @Override
-    public void addLast(SpaceMarine spaceMarine) {
-
-    }
-
-    @Override
-    public void removeFirst() {
-
+        return collection.size();
     }
 }

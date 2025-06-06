@@ -24,7 +24,7 @@ public abstract class Command implements Serializable {
      */
     public abstract String getDescription();
 
-    public abstract void execute();
+    public abstract String execute();
 
     public void setQueue(Queue<Object> queue) {
         this.queue = queue;
