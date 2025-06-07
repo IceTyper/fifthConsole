@@ -9,7 +9,7 @@ public class Exit extends Command {
 
     @Override
     public String getDescription() {
-        return "Завершение программы";
+        return "exit - Завершение программы";
     }
 
     @Override

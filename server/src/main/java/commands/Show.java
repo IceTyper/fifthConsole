@@ -8,7 +8,7 @@ import java.util.Deque;
 public class Show extends Command {
     @Override
     public String getDescription() {
-        return "";
+        return "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 
     @Override
