@@ -32,14 +32,17 @@ public class Client {
                 Message msg = CommandHandler.executeCommand(line);
                 if (msg != null) {
                     Message receivedMsg = sender.sendAndReceive(msg);
-                    System.out.println("Ответ от сервера: " + receivedMsg.getMessage());
+                    System.out.println("Ответ от сервера: ");
+                    for (Object str : receivedMsg.args()) {
+                        System.out.println((String) str);
+                    }
                 }
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());
             } catch (RedundantArgumentsException e) {
                 System.out.println(e.getMessage());
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println(e.getClass().getName());
+                e.printStackTrace();
             }
         }
     }

@@ -5,6 +5,7 @@ import connectionchamber.UDPChannelServer;
 import io.FileHandler;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Server {
@@ -25,8 +26,8 @@ public class Server {
             if (System.in.available() > 0) {
                 String input = scanner.nextLine().trim().toLowerCase();
                 if (input.equals("exit") || input.equals("save")) {
-                    String result = command.executeCommand(new Message(input, null));
-                    System.out.println(result);
+                    Object[] result = command.executeCommand(new Message(input, null));
+                    System.out.println(Arrays.toString(result));
                 }
             }
 
@@ -40,10 +41,10 @@ public class Server {
             Message msg = serializator.deserialize(receivedMsg);
             System.out.println("received: " + msg);
             System.out.println("from client: " + server.getClientAddress() + ":" + server.getClientPort());
-            String answer = command.executeCommand(msg);
-            Message answerMsg = new Message(msg.commandName(), new String[]{answer});
+            Object[] answer = command.executeCommand(msg);
+            Message answerMsg = new Message(msg.commandName(), answer);
             byte[] byteMsg = serializator.serialize(answerMsg);
-            System.out.println("sending: " + answerMsg);
+            //System.out.println("sending: " + answerMsg);
             server.send(byteMsg);
         }
     }
@@ -53,7 +54,7 @@ public class Server {
     //                "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
     //                "Show", "SumOfHealth", "Update"
     private static void init() {
-        CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save());
+        CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show());
         System.out.println(new FileHandler().readFromFile());
     }
 }

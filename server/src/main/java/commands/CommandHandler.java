@@ -38,7 +38,7 @@ public class CommandHandler {
         return commands.containsKey(command);
     }
 
-    public String executeCommand(Message msg) {
+    public Object[] executeCommand(Message msg) {
         if (msg == null) {
             logger.info("msg is null.");
             return null;

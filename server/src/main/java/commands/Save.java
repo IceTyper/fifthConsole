@@ -13,12 +13,12 @@ public class Save extends Command {
     }
 
     @Override
-    public String execute() {
+    public Object[] execute() {
         try {
             FileHandable fileHandler = new FileHandler();
-            return fileHandler.saveToFile();
+            return new Object[]{fileHandler.saveToFile()};
         } catch (IOException e) {
-            return "Saving to file failed: " + e.getMessage();
+            return new Object[]{"Saving to file failed: " + e.getMessage()};
         }
     }
 }

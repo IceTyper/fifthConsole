@@ -16,7 +16,7 @@ public class Add extends Command {
 
     //name, x, y, health, loyal, weaponType, meleeWeaponType, chapterName, marinesCount, world
     @Override
-    public String execute() {
+    public Object[] execute() {
         String name = (String) queue.remove();
         long x = (long) queue.remove();
         int y = (int) queue.remove();
@@ -31,6 +31,6 @@ public class Add extends Command {
         int size = collection.size();
         long id = handler.getMaxId();
         handler.getCollection().addFirst(new SpaceMarine(id + 1, name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world)));
-        return !(size == collection.size()) ? "Элемент успешно добавлен в коллекцию! ID элемента: " + id : "Добавление элемента провалилось";
+        return !(size == collection.size()) ? new Object[]{"Элемент успешно добавлен в коллекцию! ID элемента: " + id} : new Object[]{"Добавление элемента провалилось"};
     }
 }
