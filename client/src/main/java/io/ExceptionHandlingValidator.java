@@ -1,8 +1,8 @@
-package classes.io;
+package io;
 
-import classes.exceptions.InvalidNumberException;
-import classes.exceptions.InvalidStringException;
-import classes.exceptions.UnableToBuildElementException;
+import exceptions.InvalidNumberException;
+import exceptions.InvalidStringException;
+import exceptions.UnableToBuildElementException;
 
 import java.util.function.Function;
 import java.util.function.Predicate;

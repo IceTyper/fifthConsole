@@ -1,9 +1,9 @@
-package classes.commands;
+package commands;
 
-import classes.connectionchamber.Message;
-import classes.exceptions.InvalidStringException;
-import classes.exceptions.RedundantArgumentsException;
-import classes.io.Handler;
+import connectionchamber.Message;
+import exceptions.InvalidStringException;
+import exceptions.RedundantArgumentsException;
+import io.Handler;
 
 import java.util.AbstractList;
 import java.util.ArrayList;

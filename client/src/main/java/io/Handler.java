@@ -1,4 +1,4 @@
-package classes.io;
+package io;
 
 import java.io.PrintStream;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package classes.exceptions;
+package exceptions;
 
 public class NotExistingFileException extends RuntimeException {
     public String getMessage() {

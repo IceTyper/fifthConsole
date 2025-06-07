@@ -1,13 +1,11 @@
-package classes.commands;
+package commands;
 
 
-import classes.connectionchamber.Message;
-import classes.connectionchamber.Serializator;
-import classes.exceptions.NotExistingFileException;
-import classes.exceptions.RecursionDangerException;
-import classes.io.IO;
-import classes.io.IOController;
-import classes.Client;
+import connectionchamber.Sender;
+import exceptions.NotExistingFileException;
+import exceptions.RecursionDangerException;
+import io.IO;
+import io.IOController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -66,16 +64,11 @@ public class ExecuteScript extends Command {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(Paths.get(args[1]).toFile()));
             IO io = IOController.getInstance();
             io.selectScanner(new Scanner(bufferedReader));
+            Sender sender = new Sender();
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
                 if (!(nextLine.isEmpty())) {
-                    Message msg = CommandHandler.executeCommand(new String[]{nextLine});
-                    Serializator serializator = new Serializator();
-                    byte[] byteMsg = serializator.serialize(msg);
-                    Client.getClient().send(byteMsg);
-                    byte[] byteReceivedMsg = Client.getClient().receive();
-                    Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
-                    System.out.println("received: " + receivedMsg);
+                    sender.send(new String[]{nextLine});
                 }
             }
             commands.remove(args[1]);

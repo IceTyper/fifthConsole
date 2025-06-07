@@ -1,21 +1,21 @@
-package classes.collection;
+package collection;
 
 import java.io.Serializable;
 
-public enum Weapon implements Serializable {
-    HEAVY_BOLTGUN("HEAVY_BOLT_GUN"),
-    GRAV_GUN("GRAV_GUN"),
-    HEAVY_FLAMER("HEAVY_FLAMER"),
+public enum MeleeWeapon implements Serializable {
+    CHAIN_SWORD("CHAIN_SWORD"),
+    LIGHTING_CLAW("LIGHTING_CLAW"),
+    POWER_FIST("POWER_FIST"),
     NOTHING("NONE");
 
     private final String name;
 
-    Weapon(String name) {
+    MeleeWeapon(String name) {
         this.name = name;
     }
 
-    public static Weapon getWeapon(String name) {
-        for (Weapon weapon : values()) {
+    public static MeleeWeapon getMeleeWeapon(String name) {
+        for (MeleeWeapon weapon : MeleeWeapon.values()) {
             if (weapon.getName().equals(name)) {
                 return weapon;
             }

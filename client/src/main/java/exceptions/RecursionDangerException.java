@@ -1,4 +1,4 @@
-package classes.exceptions;
+package exceptions;
 
 public class RecursionDangerException extends RuntimeException {
     public String getMessage() {

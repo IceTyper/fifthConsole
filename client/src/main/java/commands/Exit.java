@@ -1,6 +1,6 @@
-package classes.commands;
+package commands;
 
-import classes.exceptions.RedundantArgumentsException;
+import exceptions.RedundantArgumentsException;
 
 
 public class Exit extends Command {

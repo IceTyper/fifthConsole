@@ -1,8 +1,8 @@
 package commands;
 
-import collection.models.*;
-import collection.models.utility.CollectionControllable;
-import collection.models.utility.CollectionHandler;
+import collection.*;
+import collection.utility.CollectionControllable;
+import collection.utility.CollectionHandler;
 
 import java.util.ArrayDeque;
 
