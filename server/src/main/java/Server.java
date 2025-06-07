@@ -54,7 +54,8 @@ public class Server {
     //                "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
     //                "Show", "SumOfHealth", "Update"
     private static void init() {
-        CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show(), new Help(), new Info());
+        CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show(),
+                new Help(), new Info(), new PrintFieldAscendingHealth());
         System.out.println(new FileHandler().readFromFile());
     }
 }

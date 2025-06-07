@@ -50,7 +50,7 @@ public class Client {
     private static void init() {
         CommandHandler.addCommands("Help", "Add", "Exit", "AddIfMax", "Clear", "ExecuteScript",
                 "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
-                "Show", "SumOfHealth", "Update");
+                "Show", "SumOfHealth", "Update", "PrintFieldAscendingHealth");
     }
 
     public static ClientConnectable connectWithServer(String host) {
