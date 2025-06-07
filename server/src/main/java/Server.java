@@ -13,8 +13,18 @@ public class Server {
 
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
-        System.out.print("Port: ");
-        UDPChannelServer.PORT = Integer.parseInt(scanner.nextLine());
+        while (true) {
+            try {
+                System.out.print("Port: ");
+                UDPChannelServer.PORT = Integer.parseInt(scanner.nextLine());
+                if (UDPChannelServer.PORT < 1000 || UDPChannelServer.PORT > 9999) {
+                    throw new NumberFormatException();
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid port number. It must be an integer like 'xxxx'.");
+            }
+        }
         UDPChannelServer server = new UDPChannelServer();
         init();
         server.start();
@@ -32,7 +42,6 @@ public class Server {
             }
 
 
-
             byte[] receivedMsg = server.receive();
             if (receivedMsg == null) {
                 Thread.sleep(3);
@@ -48,7 +57,6 @@ public class Server {
             server.send(byteMsg);
         }
     }
-
 
 
     private static void init() {

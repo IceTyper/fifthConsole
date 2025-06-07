@@ -58,11 +58,14 @@ public class Client {
         while (true) {
             try {
                 int port = Integer.parseInt(io.readLine());
+                if (port < 1000 || port > 9999) {
+                    throw new NumberFormatException();
+                }
                 ClientConnectable client = new UDPDatagramClient();
                 client.connect(host, port);
                 return client;
             } catch (NumberFormatException e) {
-                System.out.println("Неверный формат порта. Пожалуйста, введите целое четырёхзначное число");
+                System.out.println("Неверный формат порта. Пожалуйста, введите натуральное четырёхзначное число");
             } catch (IOException e) {
                 System.out.println("Не удалось подключиться к серверу: " + e.getMessage());
             }
