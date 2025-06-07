@@ -5,6 +5,10 @@ import connectionchamber.Sender;
 import io.Handler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UpdateHandler {
 
@@ -16,6 +20,8 @@ public class UpdateHandler {
             System.out.println("Элемента с таким ID не существует");
             return null;
         }
-        return new Message("update", new Object[]{id, new Handler().recordSpacemarineFields()});
+        Object[] fields = new Handler().recordSpacemarineFields();
+        Object[] args = Stream.concat(Stream.of(id), Arrays.stream(fields)).toArray();
+        return new Message("update", args);
     }
 }

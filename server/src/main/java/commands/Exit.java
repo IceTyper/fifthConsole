@@ -1,5 +1,7 @@
 package commands;
 
+import java.util.Arrays;
+
 public class Exit extends Command {
     private static boolean isOn = true;
 
@@ -14,7 +16,7 @@ public class Exit extends Command {
 
     @Override
     public Object[] execute() {
-        System.out.println(new Save().execute());
+        System.out.println(Arrays.toString(new Save().execute()));
         isOn = false;
         return new Object[]{"Shutting down the server..."};
     }

@@ -51,12 +51,11 @@ public class Server {
 
 
 
-    //                "RemoveById",  "Update"
     private static void init() {
         CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show(),
                 new Help(), new Info(), new PrintFieldAscendingHealth(), new Clear(),
                 new RemoveHead(), new SumOfHealth(), new FilterGreaterThanMeleeWeapon(),
-                new RemoveLower(), new AddIfMax(), new RemoveById());
+                new RemoveLower(), new AddIfMax(), new RemoveById(), new Update());
         System.out.println(new FileHandler().readFromFile());
     }
 }
