@@ -1,6 +1,7 @@
 import commands.CommandHandler;
 import commands.Exit;
 import connectionchamber.ClientConnectable;
+import connectionchamber.Message;
 import connectionchamber.Sender;
 import connectionchamber.UDPDatagramClient;
 import exceptions.InvalidStringException;
@@ -28,7 +29,11 @@ public class Client {
             try {
                 System.out.println("Введите команду");
                 String[] line = io.readConsoleLine().split(" ");
-                sender.send(line);
+                Message msg = CommandHandler.executeCommand(line);
+                if (msg != null) {
+                    Message receivedMsg = sender.sendAndReceive(msg);
+                    System.out.println("Ответ от сервера: " + receivedMsg.getMessage());
+                }
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());
             } catch (RedundantArgumentsException e) {

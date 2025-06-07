@@ -1,6 +1,7 @@
 package commands;
 
 
+import connectionchamber.Message;
 import connectionchamber.Sender;
 import exceptions.NotExistingFileException;
 import exceptions.RecursionDangerException;
@@ -68,7 +69,9 @@ public class ExecuteScript extends Command {
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
                 if (!(nextLine.isEmpty())) {
-                    sender.send(new String[]{nextLine});
+                    Message msg = CommandHandler.executeCommand(new String[]{nextLine});
+                    Message receivedMsg = sender.sendAndReceive(msg);
+                    if (receivedMsg != null) System.out.println("ответ от сервера: " + receivedMsg.getMessage());
                 }
             }
             commands.remove(args[1]);

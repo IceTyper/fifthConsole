@@ -1,10 +1,12 @@
 package commands;
 
+import collection.MeleeWeapon;
 import connectionchamber.Message;
 import exceptions.InvalidStringException;
 import exceptions.RedundantArgumentsException;
 import io.Handler;
 
+import java.io.IOException;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +20,7 @@ public class CommandHandler {
     }
 
     private static void addCommand(String command) {
-        commands.add(command.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase());
+        commands.add(transformCommand(command));
     }
 
     public static void addCommands(String... commands) {
@@ -28,39 +30,59 @@ public class CommandHandler {
     }
 
     public static boolean checkIfContains(String command) {
-        return commands.contains(command);
+        return commands.contains(transformCommand(command));
+    }
+
+    private static String transformCommand(String command) {
+        return command.replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase();
     }
 
     public static Message executeCommand(String[] args) throws RedundantArgumentsException, InvalidStringException {
         if (args.length == 0 || !checkIfContains(args[0])) {
             throw new InvalidStringException();
         }
-        boolean ifTwoArgsNeeded = Arrays.asList("update", "execute_script", "filter_greater_than_melee_weapon", "remove_by_id").contains(args[0]);
-        if (ifTwoArgsNeeded && args.length != 2) {
+        String command = transformCommand(args[0]);
+        ArrayList<String> simpleCmds = new ArrayList<>(Arrays.asList("help", "info", "show", "clear", "remove_head", "sum_of_health", "print_field_ascending_health"));
+        ArrayList<String> addCmds = new ArrayList<>(Arrays.asList("add", "add_if_max", "remove_lower"));
+        if (simpleCmds.contains(command) && args.length == 1)
+            return new Message(command, null);
+
+        if (addCmds.contains(command) && args.length == 1)
+            return new Message(command, new Handler().recordSpacemarineFields());
+
+        if (command.equals("execute_script"))
+            new ExecuteScript().execute(args);
+
+        if (command.equals("exit") && args.length == 1)
+            new Exit().execute(args);
+
+        if (command.equals("filter_greater_than_melee_weapon") && args.length == 2) {
+            if (MeleeWeapon.getMeleeWeapon(args[1]) != null)
+                return new Message(command, new Object[]{MeleeWeapon.getMeleeWeapon(args[1])});
             throw new InvalidStringException();
         }
-        if (args[0].equals("execute_script")) {
-            Command executeScript = new ExecuteScript();
-            executeScript.execute(args);
-            return null;
+
+        if (command.equals("remove_by_id") && args.length == 2) {
+            try {
+                long id = Long.parseLong(args[1]);
+                return new Message(command, new Object[]{id});
+            } catch (NumberFormatException e) {
+                throw new InvalidStringException();
+            }
         }
-        if (args[0].equals("exit")) {
-            Command exit = new Exit();
-            exit.execute(args);
-            return null;
+
+        if (command.equals("update") && args.length == 2) {
+            try {
+                long id = Long.parseLong(args[1]);
+                return new UpdateHandler().execute(id);
+            } catch (NumberFormatException e) {
+                throw new InvalidStringException();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        boolean ifAdd = Arrays.asList("add", "add_if_max", "remove_lower").contains(args[0]);
-        if (args.length > 1) {
-            throw new RedundantArgumentsException();
-        }
-        if (ifAdd) {
-            Message msg = new Message(args[0], new Handler().recordSpacemarineFields());
-            return msg;
-        }
-        if (ifTwoArgsNeeded) {
-            return new Message(args[0], new String[]{args[1]});
-        }
-        return new Message(args[0], null);
+
+        throw new RedundantArgumentsException();
     }
 
     public static Collection<String> getValues() {
