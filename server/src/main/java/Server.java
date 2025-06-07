@@ -55,7 +55,8 @@ public class Server {
     //                "Show", "SumOfHealth", "Update"
     private static void init() {
         CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show(),
-                new Help(), new Info(), new PrintFieldAscendingHealth());
+                new Help(), new Info(), new PrintFieldAscendingHealth(), new Clear(),
+                new RemoveHead(), new SumOfHealth());
         System.out.println(new FileHandler().readFromFile());
     }
 }
