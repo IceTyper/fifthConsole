@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class UDPDatagramClient implements ClientConnectable {
-    private DatagramSocket socket = new DatagramSocket();
+    private final DatagramSocket socket;
     private InetAddress address;
     private int port = 9898;
 
