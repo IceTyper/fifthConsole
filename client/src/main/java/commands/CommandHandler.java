@@ -58,7 +58,7 @@ public class CommandHandler {
 
         if (command.equals("filter_greater_than_melee_weapon") && args.length == 2) {
             if (MeleeWeapon.getMeleeWeapon(args[1]) != null)
-                return new Message(command, new Object[]{MeleeWeapon.getMeleeWeapon(args[1])});
+                return new Message(command, new Object[]{MeleeWeapon.getMeleeWeapon(args[1].toUpperCase())});
             throw new InvalidStringException();
         }
 
