@@ -14,4 +14,6 @@ public interface CollectionControllable {
     LocalDateTime getCreationDate();
 
     int size();
+
+    long getMaxId();
 }

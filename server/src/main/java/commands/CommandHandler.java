@@ -43,7 +43,7 @@ public class CommandHandler {
             logger.info("msg is null.");
             return null;
         }
-        if (!(msg.args() == null)) {
+        if (msg.args() != null) {
             LinkedList<Object> fields = Arrays.stream(msg.args()).collect(Collectors.toCollection(LinkedList::new));
             commands.get(msg.commandName()).setQueue(fields);
         }

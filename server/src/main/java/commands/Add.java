@@ -29,7 +29,8 @@ public class Add extends Command {
         String world = (String) queue.remove();
         ArrayDeque<SpaceMarine> collection = (ArrayDeque<SpaceMarine>) handler.getCollection();
         int size = collection.size();
-        handler.getCollection().addFirst(new SpaceMarine(name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world)));
-        return !(size == collection.size()) ? "Элемент успешно добавлен в коллекцию!" : "Добавление элемента провалилось";
+        long id = handler.getMaxId();
+        handler.getCollection().addFirst(new SpaceMarine(id + 1, name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world)));
+        return !(size == collection.size()) ? "Элемент успешно добавлен в коллекцию! ID элемента: " + id : "Добавление элемента провалилось";
     }
 }

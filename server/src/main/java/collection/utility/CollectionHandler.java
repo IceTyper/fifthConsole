@@ -35,4 +35,12 @@ public class CollectionHandler implements CollectionControllable {
     public int size() {
         return collection.size();
     }
+
+    @Override
+    public long getMaxId() {
+        return collection.stream()
+                .mapToLong(SpaceMarine::getId)
+                .max()
+                .orElse(0);
+    }
 }

@@ -1,8 +1,8 @@
 import commands.Add;
 import commands.CommandHandler;
+import commands.Exit;
 import connectionchamber.Message;
 import connectionchamber.Serializator;
-import connectionchamber.ServerConnectable;
 import connectionchamber.UDPChannelServer;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Server {
     private static Scanner scanner = new Scanner(System.in);
-    private static boolean isOn = true;
+
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         System.out.print("Port: ");
@@ -22,7 +22,15 @@ public class Server {
         Serializator serializator = new Serializator();
         CommandHandler command = CommandHandler.getInstance();
 
-        while (isOn) {
+        while (Exit.isOn()) {
+            if (System.in.available() > 0) {
+                String input = scanner.nextLine().trim().toLowerCase();
+                if (input.equals("exit") || input.equals("save")) {
+                    String result = command.executeCommand(new Message(input, null));
+                    System.out.println(result);
+                }
+            }
+
             byte[] receivedMsg = server.receive();
             if (receivedMsg == null) {
                 Thread.sleep(3);
@@ -35,17 +43,15 @@ public class Server {
             Message answerMsg = new Message(msg.commandName(), new String[]{answer});
             byte[] byteMsg = serializator.serialize(answerMsg);
             System.out.println("sending: " + answerMsg);
-            Thread.sleep(10);
             server.send(byteMsg);
-
         }
     }
+
 
     //"Help", "Add", "Exit", "AddIfMax", "Clear", "ExecuteScript",
     //                "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
     //                "Show", "SumOfHealth", "Update"
     private static void init() {
-        CommandHandler.getInstance().addCommands(new Add());
+        CommandHandler.getInstance().addCommands(new Add(), new Exit());
     }
-
 }

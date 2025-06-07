@@ -50,11 +50,11 @@ public class CommandHandler {
         if (addCmds.contains(command) && args.length == 1)
             return new Message(command, new Handler().recordSpacemarineFields());
 
-        if (command.equals("execute_script"))
-            new ExecuteScript().execute(args);
+        if (command.equals("execute_script")) {
+            new ExecuteScript().execute(args); return null;}
 
-        if (command.equals("exit") && args.length == 1)
-            new Exit().execute(args);
+        if (command.equals("exit") && args.length == 1) {
+            new Exit().execute(args); return null;}
 
         if (command.equals("filter_greater_than_melee_weapon") && args.length == 2) {
             if (MeleeWeapon.getMeleeWeapon(args[1]) != null)
