@@ -34,7 +34,9 @@ public class UDPDatagramClient implements ClientConnectable {
         byte[] buffer = new byte[4096];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         socket.receive(packet);
-        byte[] received = packet.getData();
+        int length = packet.getLength();
+        byte[] received = new byte[length];
+        System.arraycopy(buffer, 0, received, 0, length);
         System.out.println("Ответ получен!");
         return received;
     }

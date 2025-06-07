@@ -46,14 +46,14 @@ public class Client {
                     client.send(byteMsg);
                     byte[] byteReceivedMsg = client.receive();
                     Message receivedMsg = (Message) serializator.deserialize(byteReceivedMsg);
-                    System.out.println("received: " + receivedMsg);
+                    System.out.println("Ответ от сервера: " + receivedMsg.getMessage());
                 }
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());
             } catch (RedundantArgumentsException e) {
                 System.out.println(e.getMessage());
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                System.out.println(e.getClass().getName());
             }
         }
     }

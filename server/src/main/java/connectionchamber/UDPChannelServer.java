@@ -21,6 +21,13 @@ public class UDPChannelServer implements ServerConnectable {
     private int clientPort;
     private String clientAddress;
 
+    public int getClientPort() {
+        return clientPort;
+    }
+
+    public String getClientAddress() {
+        return clientAddress;
+    }
 
     @Override
     public void start() throws IOException {
@@ -31,7 +38,6 @@ public class UDPChannelServer implements ServerConnectable {
     @Override
     public void send(byte[] data) throws IOException {
         ByteBuffer buffer = ByteBuffer.wrap(data);
-        buffer.flip();
         channel.send(buffer, new InetSocketAddress(clientAddress, clientPort));
 
     }

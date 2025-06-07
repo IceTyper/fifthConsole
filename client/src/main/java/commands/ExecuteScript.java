@@ -84,6 +84,7 @@ public class ExecuteScript extends Command {
         } catch (NotExistingFileException | RecursionDangerException e) {
             System.out.println(e.getMessage());
         } catch (NoSuchElementException | IOException | ClassNotFoundException e) {
+            System.out.println("execute script error" + e.getClass().getName());
             e.printStackTrace();
         } finally {
             commands.clear();
