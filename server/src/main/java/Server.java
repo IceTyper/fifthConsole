@@ -50,14 +50,13 @@ public class Server {
     }
 
 
-    //  "AddIfMax", "Clear", "ExecuteScript",
-    //                "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
-    //                "Show", "SumOfHealth", "Update"
+
+    //                "RemoveById",  "Update"
     private static void init() {
         CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show(),
                 new Help(), new Info(), new PrintFieldAscendingHealth(), new Clear(),
                 new RemoveHead(), new SumOfHealth(), new FilterGreaterThanMeleeWeapon(),
-                new RemoveLower(), new AddIfMax());
+                new RemoveLower(), new AddIfMax(), new RemoveById());
         System.out.println(new FileHandler().readFromFile());
     }
 }

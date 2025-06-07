@@ -38,7 +38,8 @@ public class CommandHandler {
     }
 
     public static Message executeCommand(String[] args) throws RedundantArgumentsException, InvalidStringException {
-        if (args.length == 0 || !checkIfContains(args[0])) {
+        boolean ifTwoArgsNeeded = Arrays.asList("update", "execute_script", "filter_greater_than_melee_weapon", "remove_by_id").contains(args[0]);
+        if (args.length == 0 || !checkIfContains(args[0]) || (ifTwoArgsNeeded && args.length < 2)) {
             throw new InvalidStringException();
         }
         String command = transformCommand(args[0]);
