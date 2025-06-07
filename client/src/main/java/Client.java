@@ -10,6 +10,7 @@ import io.IO;
 import io.IOController;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Client {
@@ -33,9 +34,7 @@ public class Client {
                 if (msg != null) {
                     Message receivedMsg = sender.sendAndReceive(msg);
                     System.out.println("Ответ от сервера: ");
-                    for (Object str : receivedMsg.args()) {
-                        System.out.println((String) str);
-                    }
+                    Arrays.stream(receivedMsg.args()).map(String.class::cast).forEach(System.out::println);
                 }
             } catch (InvalidStringException e) {
                 System.out.println(e.getMessage());

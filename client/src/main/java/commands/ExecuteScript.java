@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -67,11 +68,15 @@ public class ExecuteScript extends Command {
             io.selectScanner(new Scanner(bufferedReader));
             Sender sender = new Sender();
             String nextLine;
-            while ((nextLine = bufferedReader.readLine()) != null) {
+            while (io.hasNextLine()) {
+                nextLine = io.readLine().trim();
                 if (!(nextLine.isEmpty())) {
                     Message msg = CommandHandler.executeCommand(new String[]{nextLine});
                     Message receivedMsg = sender.sendAndReceive(msg);
-                    if (receivedMsg != null) System.out.println("ответ от сервера: " + receivedMsg.getMessage());
+                    if (receivedMsg != null) {
+                        System.out.println("ответ от сервера: ");
+                        Arrays.stream(receivedMsg.args()).map(String.class::cast).forEach(System.out::println);
+                    }
                 }
             }
             commands.remove(args[1]);

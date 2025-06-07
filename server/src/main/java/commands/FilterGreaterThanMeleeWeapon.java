@@ -24,7 +24,7 @@ public class FilterGreaterThanMeleeWeapon extends Command {
                 response.add(marine.toString());
             }
         }
-        if (!response.isEmpty()) {
+        if (response.isEmpty()) {
             response.add("Ни один подходящий элемент не найден");
         }
         return response.toArray();

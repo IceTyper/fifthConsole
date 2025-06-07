@@ -1,5 +1,8 @@
+show
+info
+info
 add
-fgnrg
+aboba
 34
 235
 23523
@@ -9,3 +12,15 @@ none
 nsrs
 437
 fsf
+
+remove_lower
+gqeyufgouwegfoqweg
+234
+2315
+512
+true
+none
+none
+wej
+124
+qegr

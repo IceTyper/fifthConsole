@@ -56,7 +56,8 @@ public class Server {
     private static void init() {
         CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save(), new Show(),
                 new Help(), new Info(), new PrintFieldAscendingHealth(), new Clear(),
-                new RemoveHead(), new SumOfHealth(), new FilterGreaterThanMeleeWeapon());
+                new RemoveHead(), new SumOfHealth(), new FilterGreaterThanMeleeWeapon(),
+                new RemoveLower(), new AddIfMax());
         System.out.println(new FileHandler().readFromFile());
     }
 }
