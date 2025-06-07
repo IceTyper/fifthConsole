@@ -9,6 +9,8 @@ public interface CollectionControllable {
 
     Deque<SpaceMarine> getCollection();
 
+    void setCollection(Deque<SpaceMarine> collection);
+
     void sortCollection();
 
     LocalDateTime getCreationDate();

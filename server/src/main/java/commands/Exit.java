@@ -14,6 +14,7 @@ public class Exit extends Command {
 
     @Override
     public String execute() {
+        System.out.println(new Save().execute());
         isOn = false;
         return "Shutting down the server...";
     }

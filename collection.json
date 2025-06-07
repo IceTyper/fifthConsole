@@ -1,0 +1,74 @@
+[
+  {
+    "id": 4,
+    "name": "fgnrg",
+    "coordinates": {
+      "x": 34,
+      "y": 235
+    },
+    "creationDate": "2025-06-07",
+    "health": 23523,
+    "loyal": false,
+    "weaponType": "NOTHING",
+    "meleeWeapon": "NOTHING",
+    "chapter": {
+      "name": "nsrs",
+      "marinesCount": 437,
+      "world": "fsf"
+    }
+  },
+  {
+    "id": 3,
+    "name": "fgnrg",
+    "coordinates": {
+      "x": 34,
+      "y": 235
+    },
+    "creationDate": "2025-06-07",
+    "health": 23523,
+    "loyal": false,
+    "weaponType": "NOTHING",
+    "meleeWeapon": "NOTHING",
+    "chapter": {
+      "name": "nsrs",
+      "marinesCount": 437,
+      "world": "fsf"
+    }
+  },
+  {
+    "id": 2,
+    "name": "fgnrg",
+    "coordinates": {
+      "x": 34,
+      "y": 235
+    },
+    "creationDate": "2025-06-07",
+    "health": 23523,
+    "loyal": false,
+    "weaponType": "NOTHING",
+    "meleeWeapon": "NOTHING",
+    "chapter": {
+      "name": "nsrs",
+      "marinesCount": 437,
+      "world": "fsf"
+    }
+  },
+  {
+    "id": 1,
+    "name": "fgnrg",
+    "coordinates": {
+      "x": 34,
+      "y": 235
+    },
+    "creationDate": "2025-06-07",
+    "health": 23523,
+    "loyal": false,
+    "weaponType": "NOTHING",
+    "meleeWeapon": "NOTHING",
+    "chapter": {
+      "name": "nsrs",
+      "marinesCount": 437,
+      "world": "fsf"
+    }
+  }
+]

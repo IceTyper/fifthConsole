@@ -1,9 +1,8 @@
-import commands.Add;
-import commands.CommandHandler;
-import commands.Exit;
+import commands.*;
 import connectionchamber.Message;
 import connectionchamber.Serializator;
 import connectionchamber.UDPChannelServer;
+import io.FileHandler;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -31,6 +30,8 @@ public class Server {
                 }
             }
 
+
+
             byte[] receivedMsg = server.receive();
             if (receivedMsg == null) {
                 Thread.sleep(3);
@@ -48,10 +49,11 @@ public class Server {
     }
 
 
-    //"Help", "Add", "Exit", "AddIfMax", "Clear", "ExecuteScript",
+    //  "AddIfMax", "Clear", "ExecuteScript",
     //                "FilterGreaterThanMeleeWeapon", "Info", "RemoveById", "RemoveHead", "RemoveLower",
     //                "Show", "SumOfHealth", "Update"
     private static void init() {
-        CommandHandler.getInstance().addCommands(new Add(), new Exit());
+        CommandHandler.getInstance().addCommands(new Add(), new Exit(), new Save());
+        System.out.println(new FileHandler().readFromFile());
     }
 }

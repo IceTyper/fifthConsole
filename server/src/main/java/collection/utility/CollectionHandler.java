@@ -20,6 +20,10 @@ public class CollectionHandler implements CollectionControllable {
         return collection;
     }
 
+    @Override
+    public void setCollection(Deque<SpaceMarine> collection) {
+        CollectionHandler.collection = collection;
+    }
 
     @Override
     public void sortCollection() {
