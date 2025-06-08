@@ -31,7 +31,7 @@ public class Update extends Command {
                 .findFirst();
 
         if (marine.isEmpty()) {
-            return new Object[]{false};
+            return new Object[]{"Элемент куда-то испарился, простите, мы не знаем, что с ним стало 0_0"};
         }
 
         SpaceMarine oldMarine = marine.get();

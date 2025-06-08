@@ -21,7 +21,7 @@ public class Client {
     }
 
     private static void runLoop() {
-        ClientConnectable client = connectWithServer("pg");
+        ClientConnectable client = connectWithServer("localhost");
         Sender sender = new Sender();
         sender.setClient(client);
         System.out.println("Приложение запущено и готово к работе");
