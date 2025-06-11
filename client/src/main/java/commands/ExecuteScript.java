@@ -1,7 +1,7 @@
 package commands;
 
 
-import connectionchamber.Message;
+import connection.Message;
 import connectionchamber.Sender;
 import exceptions.NotExistingFileException;
 import exceptions.RecursionDangerException;

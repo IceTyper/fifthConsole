@@ -1,13 +1,11 @@
 package commands;
 
-import connectionchamber.Message;
+import connection.Message;
 import connectionchamber.Sender;
 import io.Handler;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class UpdateHandler {

@@ -1,6 +1,6 @@
-package collection.utility;
+package collection;
 
-import collection.SpaceMarine;
+import models.SpaceMarine;
 
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;

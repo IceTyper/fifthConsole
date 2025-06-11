@@ -1,6 +1,6 @@
 package commands;
 
-import collection.utility.CollectionHandler;
+import collection.CollectionHandler;
 
 import java.util.ArrayList;
 import java.util.Deque;

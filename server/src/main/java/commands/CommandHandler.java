@@ -1,6 +1,6 @@
 package commands;
 
-import connectionchamber.Message;
+import connection.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,11 +1,10 @@
 package commands;
 
-import collection.*;
-import collection.utility.CollectionControllable;
-import collection.utility.CollectionHandler;
+import models.SpaceMarine;
+import collection.CollectionControllable;
+import collection.CollectionHandler;
 import io.Builder;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class AddIfMax extends Command {

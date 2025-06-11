@@ -1,6 +1,6 @@
 import commands.*;
-import connectionchamber.Message;
-import connectionchamber.Serializator;
+import connection.Message;
+import connection.Serializator;
 import connectionchamber.UDPChannelServer;
 import io.FileHandler;
 
@@ -47,7 +47,7 @@ public class Server {
                 Thread.sleep(3);
                 continue;
             }
-            Message msg = serializator.deserialize(receivedMsg);
+            Message msg = (Message) serializator.deserialize(receivedMsg);
             System.out.println("received: " + msg);
             System.out.println("from client: " + server.getClientAddress() + ":" + server.getClientPort());
             Object[] answer = command.executeCommand(msg);

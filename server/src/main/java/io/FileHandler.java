@@ -1,8 +1,8 @@
 package io;
 
-import collection.SpaceMarine;
-import collection.utility.CollectionControllable;
-import collection.utility.CollectionHandler;
+import models.SpaceMarine;
+import collection.CollectionControllable;
+import collection.CollectionHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;

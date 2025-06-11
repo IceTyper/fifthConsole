@@ -1,8 +1,8 @@
 package io;
 
-import collection.*;
-import collection.utility.CollectionControllable;
-import collection.utility.CollectionHandler;
+import collection.CollectionControllable;
+import collection.CollectionHandler;
+import models.*;
 
 import java.util.Queue;
 

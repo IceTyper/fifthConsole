@@ -1,5 +1,8 @@
 package connectionchamber;
 
+import connection.Serializator;
+import connection.Message;
+
 import java.io.IOException;
 
 public class Sender {
@@ -21,4 +24,3 @@ public class Sender {
         return (Message) serializator.deserialize(byteReceivedMsg);
     }
 }
-

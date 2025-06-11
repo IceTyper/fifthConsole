@@ -1,7 +1,7 @@
 package commands;
 
-import collection.MeleeWeapon;
-import connectionchamber.Message;
+import connection.Message;
+import models.MeleeWeapon;
 import exceptions.InvalidStringException;
 import exceptions.RedundantArgumentsException;
 import io.Handler;

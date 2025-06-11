@@ -1,7 +1,7 @@
 import commands.CommandHandler;
 import commands.Exit;
+import connection.Message;
 import connectionchamber.ClientConnectable;
-import connectionchamber.Message;
 import connectionchamber.Sender;
 import connectionchamber.UDPDatagramClient;
 import exceptions.InvalidStringException;

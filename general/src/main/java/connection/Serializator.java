@@ -1,4 +1,4 @@
-package connectionchamber;
+package connection;
 
 import java.io.*;
 

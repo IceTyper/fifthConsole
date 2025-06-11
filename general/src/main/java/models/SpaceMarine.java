@@ -1,12 +1,12 @@
-package collection;
+package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 
 public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
-    static private long ID = 1;
-    private final Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    static private long ID = 1L;
+    private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -16,11 +16,8 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
     private MeleeWeapon meleeWeapon; //Поле не может быть null
     private Chapter chapter; //Поле не может быть null
 
-    {
-        this.id = ID++;
-    }
-
-    public SpaceMarine(String name, Coordinates coordinates, LocalDate creationDate, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
+    public SpaceMarine(Long id, String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
+        this.id = id;
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = LocalDate.now();
@@ -33,6 +30,10 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public MeleeWeapon getMeleeWeapon() {
@@ -67,8 +68,8 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
         this.coordinates = coordinates;
     }
 
-    public String getCreationDate() {
-        return creationDate.toString();
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
     public void setCreationDate(LocalDate creationDate) {
@@ -122,6 +123,6 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
 
     @Override
     public int compareTo(SpaceMarine o) {
-        return this.health.compareTo(o.getHealth());
+        return this.name.compareTo(o.getName());
     }
 }

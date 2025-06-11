@@ -1,7 +1,7 @@
 package commands;
 
-import collection.SpaceMarine;
-import collection.utility.CollectionHandler;
+import models.SpaceMarine;
+import collection.CollectionHandler;
 import io.Builder;
 
 import java.util.Deque;

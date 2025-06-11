@@ -1,8 +1,8 @@
 package commands;
 
-import collection.MeleeWeapon;
-import collection.SpaceMarine;
-import collection.utility.CollectionHandler;
+import models.MeleeWeapon;
+import models.SpaceMarine;
+import collection.CollectionHandler;
 
 import java.util.ArrayList;
 import java.util.Deque;
