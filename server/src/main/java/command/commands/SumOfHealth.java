@@ -1,19 +1,20 @@
-package commands;
+package command.commands;
 
 import collection.CollectionHandler;
+import command.AbstractCommand;
 import models.SpaceMarine;
 
 import java.util.ArrayList;
 import java.util.Deque;
 
-public class SumOfHealth extends Command {
+public class SumOfHealth extends AbstractCommand {
     @Override
     public String getDescription() {
         return "sum_of_health : вывести сумму значений поля health для всех элементов коллекции";
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         ArrayList<Object> response = new ArrayList<>();
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();
         if (collection == null || collection.isEmpty()) {

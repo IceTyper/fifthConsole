@@ -1,5 +1,6 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import models.SpaceMarine;
 import collection.CollectionControllable;
 import collection.CollectionHandler;
@@ -7,7 +8,7 @@ import io.Builder;
 
 import java.util.Deque;
 
-public class Add extends Command {
+public class Add extends AbstractCommand {
     private static CollectionControllable handler = new CollectionHandler();
 
     @Override
@@ -17,7 +18,7 @@ public class Add extends Command {
 
     //name, x, y, health, loyal, weaponType, meleeWeaponType, chapterName, marinesCount, world
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         Builder builder = new Builder();
         Deque<SpaceMarine> collection = handler.getCollection();
         int size = collection.size();

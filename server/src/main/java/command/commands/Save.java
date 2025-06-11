@@ -1,11 +1,12 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import io.FileHandable;
 import io.FileHandler;
 
 import java.io.IOException;
 
-public class Save extends Command {
+public class Save extends AbstractCommand {
 
     @Override
     public String getDescription() {
@@ -13,7 +14,7 @@ public class Save extends Command {
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         try {
             FileHandable fileHandler = new FileHandler();
             return new Object[]{fileHandler.saveToFile()};

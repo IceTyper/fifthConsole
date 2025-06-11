@@ -1,4 +1,4 @@
-package commands;
+package command;
 
 import connection.Message;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class CommandHandler {
     private static final Logger logger = LoggerFactory.getLogger(CommandHandler.class);
     private static CommandHandler instance;
-    private final HashMap<String, Command> commands = new HashMap<>();
+    private final HashMap<String, AbstractCommand> commands = new HashMap<>();
 
     private CommandHandler() {
     }
@@ -26,11 +26,11 @@ public class CommandHandler {
         return instance;
     }
 
-    private void addCommand(Command command) {
+    private void addCommand(AbstractCommand command) {
         commands.put(command.getClass().getSimpleName().replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase(), command);
     }
 
-    public void addCommands(Command... commands) {
+    public void addCommands(AbstractCommand... commands) {
         Stream.of(commands).forEach(this::addCommand);
     }
 
@@ -47,10 +47,10 @@ public class CommandHandler {
             LinkedList<Object> fields = Arrays.stream(msg.args()).collect(Collectors.toCollection(LinkedList::new));
             commands.get(msg.commandName()).setQueue(fields);
         }
-        return commands.get(msg.commandName()).execute();
+        return commands.get(msg.commandName()).execute(msg.args());
     }
 
-    public Collection<Command> getValues() {
+    public Collection<AbstractCommand> getValues() {
         return commands.values();
     }
 }

@@ -1,5 +1,6 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import models.SpaceMarine;
 import collection.CollectionHandler;
 import io.Builder;
@@ -7,14 +8,14 @@ import io.Builder;
 import java.util.Deque;
 import java.util.Optional;
 
-public class Update extends Command {
+public class Update extends AbstractCommand {
     @Override
     public String getDescription() {
         return "update id {element} : обновить значение элемента коллекции, id которого равен заданному";
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();
 
         if (queue.size() == 1) {

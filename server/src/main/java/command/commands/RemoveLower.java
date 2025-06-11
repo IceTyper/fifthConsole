@@ -1,5 +1,6 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import models.SpaceMarine;
 import collection.CollectionControllable;
 import collection.CollectionHandler;
@@ -9,7 +10,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.stream.Collectors;
 
-public class RemoveLower extends Command {
+public class RemoveLower extends AbstractCommand {
     private static CollectionControllable handler = new CollectionHandler();
 
     @Override
@@ -18,7 +19,7 @@ public class RemoveLower extends Command {
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         Builder builder = new Builder();
         Deque<SpaceMarine> collection = handler.getCollection();
         SpaceMarine marine = builder.buildSpaceMarine(queue);

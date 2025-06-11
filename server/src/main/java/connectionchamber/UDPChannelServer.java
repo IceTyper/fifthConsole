@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
 public class UDPChannelServer implements ServerConnectable {
-    public static int PORT = 9057;
+    public static int PORT;
     private static DatagramChannel channel;
 
     static {
@@ -32,14 +32,12 @@ public class UDPChannelServer implements ServerConnectable {
     @Override
     public void start() throws IOException {
         channel.bind(new InetSocketAddress(PORT));
-
     }
 
     @Override
     public void send(byte[] data) throws IOException {
         ByteBuffer buffer = ByteBuffer.wrap(data);
         channel.send(buffer, new InetSocketAddress(clientAddress, clientPort));
-
     }
 
     @Override

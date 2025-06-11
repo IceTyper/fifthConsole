@@ -1,20 +1,21 @@
-package commands;
+package command.commands;
 
 import collection.CollectionHandler;
+import command.AbstractCommand;
 import models.SpaceMarine;
 
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class PrintFieldAscendingHealth extends Command {
+public class PrintFieldAscendingHealth extends AbstractCommand {
     @Override
     public String getDescription() {
         return "print_field_ascending_health : вывести значения поля health всех элементов в порядке возрастания";
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         ArrayList<Object> response = new ArrayList<>();
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();
         if (collection == null || collection.isEmpty()) {

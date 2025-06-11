@@ -1,17 +1,18 @@
-package commands;
+package command.commands;
 
 import collection.CollectionHandler;
+import command.AbstractCommand;
 
 import java.util.ArrayList;
 
-public class Info extends Command {
+public class Info extends AbstractCommand {
     @Override
     public String getDescription() {
         return "info : вывести информацию о коллекции";
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         ArrayList<Object> response = new ArrayList<>();
         CollectionHandler handler = new CollectionHandler();
         response.add("Дата инициализации коллекции: " + handler.getCreationDate());

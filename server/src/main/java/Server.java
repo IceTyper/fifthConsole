@@ -1,4 +1,5 @@
-import commands.*;
+import command.*;
+import command.commands.*;
 import connection.Message;
 import connection.Serializator;
 import connectionchamber.UDPChannelServer;

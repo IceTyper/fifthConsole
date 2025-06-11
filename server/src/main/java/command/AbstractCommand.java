@@ -1,4 +1,4 @@
-package commands;
+package command;
 
 import java.io.Serializable;
 import java.util.Queue;
@@ -12,7 +12,7 @@ import java.util.Queue;
  *
  * @author IceTyper
  */
-public abstract class Command implements Serializable {
+public abstract class AbstractCommand implements Serializable, Command {
     protected Queue<Object> queue;
 
     /**
@@ -23,8 +23,6 @@ public abstract class Command implements Serializable {
      * "имя_команды {параметры} - описание функционала"
      */
     public abstract String getDescription();
-
-    public abstract Object[] execute();
 
     public void setQueue(Queue<Object> queue) {
         this.queue = queue;

@@ -1,5 +1,6 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import models.SpaceMarine;
 import collection.CollectionControllable;
 import collection.CollectionHandler;
@@ -7,7 +8,7 @@ import io.Builder;
 
 import java.util.Deque;
 
-public class AddIfMax extends Command {
+public class AddIfMax extends AbstractCommand {
     private static CollectionControllable handler = new CollectionHandler();
 
     @Override
@@ -16,7 +17,7 @@ public class AddIfMax extends Command {
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         Builder builder = new Builder();
         Deque<SpaceMarine> collection = handler.getCollection();
         SpaceMarine marine = builder.buildSpaceMarine(queue);

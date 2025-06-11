@@ -1,5 +1,6 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import models.MeleeWeapon;
 import models.SpaceMarine;
 import collection.CollectionHandler;
@@ -7,14 +8,14 @@ import collection.CollectionHandler;
 import java.util.ArrayList;
 import java.util.Deque;
 
-public class FilterGreaterThanMeleeWeapon extends Command {
+public class FilterGreaterThanMeleeWeapon extends AbstractCommand {
     @Override
     public String getDescription() {
         return "filter_greater_than_melee_weapon {meleeWeapon} : вывести элементы, значение поля meleeWeapon которых больше заданного";
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         ArrayList<Object> response = new ArrayList<>();
         MeleeWeapon meleeWeapon = (MeleeWeapon) queue.remove();
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();

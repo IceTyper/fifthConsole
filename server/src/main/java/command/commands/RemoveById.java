@@ -1,5 +1,6 @@
-package commands;
+package command.commands;
 
+import command.AbstractCommand;
 import models.SpaceMarine;
 import collection.CollectionHandler;
 
@@ -7,14 +8,14 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Optional;
 
-public class RemoveById extends Command {
+public class RemoveById extends AbstractCommand {
     @Override
     public String getDescription() {
         return "remove_by_id id : удалить элемент из коллекции по его id";
     }
 
     @Override
-    public Object[] execute() {
+    public Object[] execute(Object[] args) {
         ArrayList<Object> response = new ArrayList<>();
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();
         long id = (long) queue.remove();
