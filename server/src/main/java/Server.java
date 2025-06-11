@@ -14,18 +14,23 @@ public class Server {
 
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
-        while (true) {
-            try {
-                System.out.print("Port: ");
-                UDPChannelServer.PORT = Integer.parseInt(scanner.nextLine());
-                if (UDPChannelServer.PORT < 1000 || UDPChannelServer.PORT > 9999) {
-                    throw new NumberFormatException();
-                }
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid port number. It must be an integer like 'xxxx'.");
+
+        try {
+            if (args.length == 0) {
+                throw new IOException("Port number is required as a single argument.");
             }
+            if (args.length > 1) {
+                throw new IOException("Too many arguments. Only one argument is expected: the port number.");
+            }
+            int port = Integer.parseInt(args[0]);
+            if (port < 1000 || port > 9999) {
+                throw new IOException("Port number must be between 1000 and 9999.");
+            }
+            UDPChannelServer.PORT = port;
+        } catch (NumberFormatException | IOException e) {
+            System.out.println(e.getMessage() + "Please provide a valid port number: 1000-9999.");
         }
+
         UDPChannelServer server = new UDPChannelServer();
         init();
         server.start();
