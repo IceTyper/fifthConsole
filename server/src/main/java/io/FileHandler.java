@@ -1,7 +1,7 @@
 package io;
 
 import models.SpaceMarine;
-import collection.CollectionControllable;
+import collection.CollectionHandable;
 import collection.CollectionHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,7 +22,7 @@ import java.util.Deque;
 public class FileHandler implements FileHandable {
     @Override
     public String saveToFile() throws IOException {
-        CollectionControllable collectionHandler = new CollectionHandler();
+        CollectionHandable collectionHandler = new CollectionHandler();
         Deque<SpaceMarine> collection = collectionHandler.getCollection();
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
 
@@ -37,7 +37,7 @@ public class FileHandler implements FileHandable {
 
     @Override
     public String readFromFile() {
-        CollectionControllable collectionHandler = new CollectionHandler();
+        CollectionHandable collectionHandler = new CollectionHandler();
         Deque<SpaceMarine> collection = collectionHandler.getCollection();
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).setPrettyPrinting().create();
 

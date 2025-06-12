@@ -14,8 +14,8 @@ public class UDPChannel {
         channel.send(buffer, new InetSocketAddress(clientAddress, clientPort));
     }
 
-    public static byte[] receive(DatagramChannel channel) throws IOException {
-        ByteBuffer buffer = ByteBuffer.allocate(4096);
+    public static byte[] receive(DatagramChannel channel, int bufferSize) throws IOException {
+        ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
         buffer.clear();
         InetSocketAddress client = (InetSocketAddress) channel.receive(buffer);
         if (client == null) return null;

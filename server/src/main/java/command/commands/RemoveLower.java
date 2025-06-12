@@ -2,7 +2,7 @@ package command.commands;
 
 import command.AbstractCommand;
 import models.SpaceMarine;
-import collection.CollectionControllable;
+import collection.CollectionHandable;
 import collection.CollectionHandler;
 import io.Builder;
 
@@ -11,7 +11,7 @@ import java.util.Deque;
 import java.util.stream.Collectors;
 
 public class RemoveLower extends AbstractCommand {
-    private static CollectionControllable handler = new CollectionHandler();
+    private static CollectionHandable handler = new CollectionHandler();
 
     @Override
     public String getDescription() {
@@ -22,15 +22,14 @@ public class RemoveLower extends AbstractCommand {
     public Object[] execute(Object[] args) {
         Builder builder = new Builder();
         Deque<SpaceMarine> collection = handler.getCollection();
-        SpaceMarine marine = builder.buildSpaceMarine(queue);
-        queue.clear();
+        SpaceMarine marine = builder.buildSpaceMarine(args);
         int size = collection.size();
 
         handler.setCollection(collection.stream().
                 filter(m -> m.compareTo(marine) > 0).
                 collect(Collectors.toCollection(ArrayDeque::new)));
 
-        int removed = collection.size();
+        int removed = size - handler.getCollection().size();
         if (removed > 0) {
             return new Object[]{"Удалено элементов: " + removed};
         } else {

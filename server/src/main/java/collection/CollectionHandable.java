@@ -5,7 +5,7 @@ import models.SpaceMarine;
 import java.time.LocalDateTime;
 import java.util.Deque;
 
-public interface CollectionControllable {
+public interface CollectionHandable {
 
     Deque<SpaceMarine> getCollection();
 

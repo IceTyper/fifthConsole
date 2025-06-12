@@ -4,8 +4,6 @@ package io;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-//Валидирующий поля интерфейс
-
 //статический класс для валидаторов на использование
 public class Validator {
     public static boolean validateString(Predicate<String> predicate, String line) {

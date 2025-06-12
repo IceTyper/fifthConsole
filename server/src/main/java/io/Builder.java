@@ -1,27 +1,22 @@
 package io;
 
-import collection.CollectionControllable;
+import collection.CollectionHandable;
 import collection.CollectionHandler;
 import models.*;
 
-import java.util.Queue;
-
 public class Builder {
 
-
-    public SpaceMarine buildSpaceMarine(Queue<Object> queue) {
-        String name = (String) queue.remove();
-        long x = (long) queue.remove();
-        int y = (int) queue.remove();
-        long health = (long) queue.remove();
-        boolean loyal = (boolean) queue.remove();
-        Weapon weapon = Weapon.getWeapon((String) queue.remove());
-        MeleeWeapon meleeWeapon = MeleeWeapon.getMeleeWeapon((String) queue.remove());
-        String chapterName = (String) queue.remove();
-        long marinesCount = (long) queue.remove();
-        String world = (String) queue.remove();
-        CollectionControllable handler = new CollectionHandler();
-        long id = handler.getMaxId();
-        return new SpaceMarine(id + 1, name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world));
+    public static SpaceMarine buildSpaceMarine(Object[] args) {
+        String name = (String) args[0];
+        long x = (long) args[1];
+        int y = (int) args[2];
+        long health = (long) args[3];
+        boolean loyal = (boolean) args[4];
+        Weapon weapon = Weapon.getWeapon((String) args[5]);
+        MeleeWeapon meleeWeapon = MeleeWeapon.getMeleeWeapon((String) args[6]);
+        String chapterName = (String) args[7];
+        long marinesCount = (long) args[8];
+        String world = (String) args[9];
+        return new SpaceMarine(name, new Coordinates(x, y), health, loyal, weapon, meleeWeapon, new Chapter(chapterName, marinesCount, world));
     }
 }

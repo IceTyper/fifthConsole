@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 
 public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
-    static private long ID = 1L;
+    //static private long ID = 1L;
     private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -18,6 +18,17 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
 
     public SpaceMarine(Long id, String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
         this.id = id;
+        this.name = name;
+        this.coordinates = coordinates;
+        this.creationDate = LocalDate.now();
+        this.health = health;
+        this.loyal = loyal;
+        this.weaponType = weaponType;
+        this.meleeWeapon = meleeWeapon;
+        this.chapter = chapter;
+    }
+
+    public SpaceMarine(String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = LocalDate.now();
@@ -100,13 +111,13 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
         this.loyal = loyal;
     }
 
-    public long getID() {
+    /*public long getID() {
         return ID;
     }
 
     public static void setID(Long id) {
         ID = id;
-    }
+    }*/
 
     @Override
     public String toString() {

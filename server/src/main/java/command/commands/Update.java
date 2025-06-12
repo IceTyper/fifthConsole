@@ -18,15 +18,14 @@ public class Update extends AbstractCommand {
     public Object[] execute(Object[] args) {
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();
 
-        if (queue.size() == 1) {
-            long id = (Long) queue.remove();
+        if (args.length == 1) {
+            long id = (Long) args[0];
             boolean ifExists = collection.stream().
                     anyMatch(a -> a.getId() == id);
-            queue.clear();
             return new Object[]{ifExists};
         }
 
-        long id = (long) queue.remove();
+        long id = (long) args[0];
         Optional<SpaceMarine> marine = collection.stream()
                 .filter(a -> a.getId() == id)
                 .findFirst();
@@ -37,13 +36,15 @@ public class Update extends AbstractCommand {
 
         SpaceMarine oldMarine = marine.get();
         Builder builder = new Builder();
-        SpaceMarine newMarine = builder.buildSpaceMarine(queue);
+        // args[1..n] — новые поля
+        Object[] newFields = new Object[args.length - 1];
+        System.arraycopy(args, 1, newFields, 0, args.length - 1);
+        SpaceMarine newMarine = builder.buildSpaceMarine(newFields);
         newMarine.setId(oldMarine.getId());
         newMarine.setCreationDate(oldMarine.getCreationDate());
         collection.remove(oldMarine);
         collection.addFirst(newMarine);
 
-        queue.clear();
         return new Object[]{"Элемент успешно обновлён"};
     }
 }

@@ -2,14 +2,14 @@ package command.commands;
 
 import command.AbstractCommand;
 import models.SpaceMarine;
-import collection.CollectionControllable;
+import collection.CollectionHandable;
 import collection.CollectionHandler;
 import io.Builder;
 
 import java.util.Deque;
 
 public class AddIfMax extends AbstractCommand {
-    private static CollectionControllable handler = new CollectionHandler();
+    private static CollectionHandable handler = new CollectionHandler();
 
     @Override
     public String getDescription() {
@@ -20,8 +20,7 @@ public class AddIfMax extends AbstractCommand {
     public Object[] execute(Object[] args) {
         Builder builder = new Builder();
         Deque<SpaceMarine> collection = handler.getCollection();
-        SpaceMarine marine = builder.buildSpaceMarine(queue);
-        queue.clear();
+        SpaceMarine marine = builder.buildSpaceMarine(args);
         boolean shouldAdd = collection.isEmpty() || collection.stream().allMatch(a -> marine.compareTo(a) > 0);
 
         if (shouldAdd) {

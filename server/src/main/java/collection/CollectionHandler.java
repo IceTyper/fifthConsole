@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.stream.Collectors;
 
-public class CollectionHandler implements CollectionControllable {
+public class CollectionHandler implements CollectionHandable {
     private static final LocalDateTime creationDate;
     private static Deque<SpaceMarine> collection = new ArrayDeque<>();
 

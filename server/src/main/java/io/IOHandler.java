@@ -15,7 +15,7 @@ public class IOHandler implements IOHandable{
 
     @Override
     public boolean hasNextLine() {
-        return (fileScanner != null) ? fileScanner.hasNextLine() : defaultScanner.hasNextLine();;
+        return (fileScanner != null) ? fileScanner.hasNextLine() : defaultScanner.hasNextLine();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class IOHandler implements IOHandable{
 
     @Override
     public String readConsoleLine() {
-        defaultScanner.nextLine();
+        return defaultScanner.nextLine();
     }
 
     @Override
