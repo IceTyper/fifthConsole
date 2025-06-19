@@ -1,15 +1,26 @@
 package connectionchamber;
 
+import connection.User;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-public class UDPDatagramClient implements ClientConnectable {
+public class UDPDatagramClient implements Connectable {
     private final DatagramSocket socket;
     private InetAddress address;
-    private int port = 9898;
+    private int port;
+    private static User user;
+
+    public static void setUser(User user) {
+        UDPDatagramClient.user = user;
+    }
+
+    public static User getUser() {
+        return user;
+    }
 
     public UDPDatagramClient() throws SocketException {
         socket = new DatagramSocket();
@@ -23,21 +34,21 @@ public class UDPDatagramClient implements ClientConnectable {
 
     @Override
     public void send(byte[] data) throws IOException {
-        System.out.println("Отправляем запрос серверу...");
+        //System.out.println("Отправляем запрос серверу...");
         DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
         socket.send(packet);
     }
 
     @Override
     public byte[] receive() throws IOException {
-        System.out.println("Ждём ответ от сервера...");
+        //System.out.println("Ждём ответ от сервера...");
         byte[] buffer = new byte[4096];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         socket.receive(packet);
         int length = packet.getLength();
         byte[] received = new byte[length];
         System.arraycopy(buffer, 0, received, 0, length);
-        System.out.println("Ответ получен!");
+        //System.out.println("Ответ получен!");
         return received;
     }
 

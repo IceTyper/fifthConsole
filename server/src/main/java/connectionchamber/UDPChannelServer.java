@@ -2,17 +2,16 @@ package connectionchamber;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-public class UDPChannelServer implements ServerConnectable {
+public class UDPChannelServer implements Connectable {
     public static int PORT;
     private static DatagramChannel channel;
 
     static {
         try {
             channel = DatagramChannel.open();
-            channel.configureBlocking(false);
+            channel.configureBlocking(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,28 +30,21 @@ public class UDPChannelServer implements ServerConnectable {
 
     @Override
     public void start() throws IOException {
-        channel.bind(new InetSocketAddress(PORT));
+        if (!channel.socket().isBound()) channel.bind(new InetSocketAddress(PORT));
     }
 
     @Override
     public void send(byte[] data) throws IOException {
-        ByteBuffer buffer = ByteBuffer.wrap(data);
-        channel.send(buffer, new InetSocketAddress(clientAddress, clientPort));
+        UDPChannel.send(data, channel, clientAddress, clientPort);
     }
 
     @Override
     public byte[] receive() throws IOException {
-        ByteBuffer buffer = ByteBuffer.allocate(4096);
-        buffer.clear();
-        InetSocketAddress client = (InetSocketAddress) channel.receive(buffer);
-        if (client == null) return null;
-        clientAddress = client.getAddress().getHostAddress();
-        clientPort = client.getPort();
-        buffer.flip();
-        int length = buffer.remaining();
-        byte[] bytes = new byte[length];
-        buffer.get(bytes);
-        return bytes;
+        var packet = UDPChannel.receive(channel, 4096);
+        if (packet == null || packet.client() == null) return null;
+        clientAddress = packet.client().getAddress().getHostAddress();
+        clientPort = packet.client().getPort();
+        return packet.data();
     }
 
     @Override

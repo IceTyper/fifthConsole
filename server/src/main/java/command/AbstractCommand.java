@@ -1,30 +1,25 @@
 package command;
 
+import collection.CollectionHandable;
+import collection.CollectionHandler;
+import database.DBHandable;
+import database.DBHandler;
+import exceptions.InvalidStringException;
+
 import java.io.Serializable;
-import java.util.Queue;
+import java.util.Arrays;
 
-/**
- * Абстрактный класс для реализации команд приложения.
- * Определяет базовый контракт для всех команд, включая описание и логику выполнения.
- * Каждая реализующая команда должна предоставить:
- * - текстовое описание для справки
- * - метод выполнения с обработкой аргументов
- *
- * @author IceTyper
- */
-public abstract class AbstractCommand implements Serializable, Command {
-    protected Queue<Object> queue;
+public abstract class AbstractCommand implements Serializable {
+    protected int[] argNumber;
+    protected static final CollectionHandable collectionHandler = new CollectionHandler();
 
-    /**
-     * Возвращает текстовое описание назначения и синтаксиса команды.
-     * Используется для вывода справочной информации пользователю (через команду Help).
-     *
-     * @return Строка с описанием команды в формате:
-     * "имя_команды {параметры} - описание функционала"
-     */
-    public abstract String getDescription();
-
-    public void setQueue(Queue<Object> queue) {
-        this.queue = queue;
+    public AbstractCommand(int[] argNumber) {
+        this.argNumber = argNumber;
     }
+
+    public boolean checkArgNumber(int num) {
+        return Arrays.stream(argNumber).anyMatch(a -> a == num);
+    }
+
+    public abstract Object[] execute(Object[] args) throws InvalidStringException;
 }

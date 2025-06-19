@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 //интерфейс для валидаторов, которые ТОЧНО возвращают нужную строку
 //или число в нужном формате
 public interface Validatable {
-    String validateString(Predicate<String> predicate, String line);
+    String validateString(Predicate<String> predicate);
 
-    <T extends Number> T validateNumber(Function<String, T> function, Predicate<T> predicate, String number);
+    <T extends Number> String validateNumber(Function<String, T> function, Predicate<T> predicate);
 }

@@ -9,20 +9,19 @@ import java.nio.channels.DatagramChannel;
 //отправку и принятие сообщений с помощью UDP и каналов
 public class UDPChannel {
 
-    public static void send(byte[] data, DatagramChannel channel, String clientAddress, int clientPort) throws IOException {
-        ByteBuffer buffer = ByteBuffer.wrap(data);
-        channel.send(buffer, new InetSocketAddress(clientAddress, clientPort));
+    public static void send(byte[] data, DatagramChannel channel, String address, int port) throws IOException {
+        channel.send(ByteBuffer.wrap(data), new InetSocketAddress(address, port));
     }
 
-    public static byte[] receive(DatagramChannel channel, int bufferSize) throws IOException {
+    public static ReceivedPacket receive(DatagramChannel channel, int bufferSize) throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
-        buffer.clear();
         InetSocketAddress client = (InetSocketAddress) channel.receive(buffer);
         if (client == null) return null;
         buffer.flip();
-        int length = buffer.remaining();
-        byte[] bytes = new byte[length];
-        buffer.get(bytes);
-        return bytes;
+        byte[] data = new byte[buffer.remaining()];
+        buffer.get(data);
+        return new ReceivedPacket(data, client);
     }
+
+    public record ReceivedPacket(byte[] data, InetSocketAddress client) {}
 }

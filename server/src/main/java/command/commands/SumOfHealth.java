@@ -2,12 +2,16 @@ package command.commands;
 
 import collection.CollectionHandler;
 import command.AbstractCommand;
+import command.Helpable;
 import models.SpaceMarine;
 
-import java.util.ArrayList;
 import java.util.Deque;
 
-public class SumOfHealth extends AbstractCommand {
+public class SumOfHealth extends AbstractCommand implements Helpable {
+    public SumOfHealth(int[] ints) {
+        super(ints);
+    }
+
     @Override
     public String getDescription() {
         return "sum_of_health : вывести сумму значений поля health для всех элементов коллекции";
@@ -15,17 +19,12 @@ public class SumOfHealth extends AbstractCommand {
 
     @Override
     public Object[] execute(Object[] args) {
-        ArrayList<Object> response = new ArrayList<>();
         Deque<SpaceMarine> collection = new CollectionHandler().getCollection();
         if (collection == null || collection.isEmpty()) {
-            response.add("Элементов нема");
-        } else {
-            long sum = 0L;
-            for (SpaceMarine marine : collection) {
-                sum += marine.getHealth();
-            }
-            response.add("Сумма значений поля health: " + sum);
+            return new Object[]{"Элементов нема"};
         }
-        return response.toArray();
+        long sum = collection.stream().mapToLong(SpaceMarine::getHealth).sum();
+        return new Object[]{("Сумма значений поля health: " + sum)};
+
     }
 }

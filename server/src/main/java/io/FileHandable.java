@@ -8,6 +8,8 @@ import java.io.IOException;
  *
  * @author IceTyper
  */
+
+@Deprecated
 public interface FileHandable {
 
     /**

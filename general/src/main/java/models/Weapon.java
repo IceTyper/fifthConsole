@@ -15,12 +15,10 @@ public enum Weapon implements Serializable {
     }
 
     public static Weapon getWeapon(String name) {
-        for (Weapon weapon : values()) {
-            if (weapon.getName().equals(name)) {
-                return weapon;
-            }
-        }
-        return null;
+        return java.util.Arrays.stream(values())
+                .filter(weapon -> weapon.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
     public String getName() {

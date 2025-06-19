@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+@Deprecated
 public class FileHandler implements FileHandable {
     @Override
     public String saveToFile() throws IOException {

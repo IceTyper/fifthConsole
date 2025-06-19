@@ -4,7 +4,7 @@ package connectionchamber;
 import java.io.IOException;
 
 //Базовый и самый абстрактный интерфейс для коннекта с сервером
-public interface ClientConnectable {
+public interface Connectable {
     void connect(String host, int port) throws IOException;
 
     void send(byte[] data) throws IOException;

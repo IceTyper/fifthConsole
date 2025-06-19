@@ -1,7 +1,4 @@
-show
-info
-info
-add
+add_if_max
 aboba
 34
 235
@@ -12,8 +9,7 @@ none
 nsrs
 437
 fsf
-
-remove_lower
+update 6
 gqeyufgouwegfoqweg
 234
 2315

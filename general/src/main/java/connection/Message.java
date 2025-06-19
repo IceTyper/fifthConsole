@@ -12,9 +12,7 @@ public record Message(String commandName, Object[] args) implements Serializable
 
     @Override
     public String toString() {
-        return "connection.Message{" +
-                "commandName='" + commandName + '\'' +
-                ", args=" + Arrays.toString(args) +
-                '}';
+        return "commandName='" + commandName + '\'' +
+                ", args=" + Arrays.toString(args);
     }
 }

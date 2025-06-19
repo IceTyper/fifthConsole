@@ -1,6 +1,5 @@
 package io;
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 

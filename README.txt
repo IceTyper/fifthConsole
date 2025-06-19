@@ -144,7 +144,8 @@ public enum MeleeWeapon {
 Для многопотчной обработки полученного запроса использовать Cached thread pool
 Для многопоточной отправки ответа использовать Fixed thread pool
 Для синхронизации доступа к коллекции использовать синхронизацию чтения и записи
- с помощью java.util.concurrent.locks.ReentrantLock
+с помощью java.util.concurrent.locks.ReentrantLock
+
 Порядок выполнения работы:
 
 В качестве базы данных использовать PostgreSQL.

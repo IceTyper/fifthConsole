@@ -2,7 +2,7 @@ package connectionchamber;
 
 import java.io.IOException;
 
-public interface ServerConnectable {
+public interface Connectable {
     void start() throws IOException;
 
     void send(byte[] data) throws IOException;

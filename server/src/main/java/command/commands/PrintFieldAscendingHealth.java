@@ -2,13 +2,17 @@ package command.commands;
 
 import collection.CollectionHandler;
 import command.AbstractCommand;
+import command.Helpable;
 import models.SpaceMarine;
 
 import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
 
-public class PrintFieldAscendingHealth extends AbstractCommand {
+public class PrintFieldAscendingHealth extends AbstractCommand implements Helpable {
+    public PrintFieldAscendingHealth(int[] ints) {
+        super(ints);
+    }
+
     @Override
     public String getDescription() {
         return "print_field_ascending_health : вывести значения поля health всех элементов в порядке возрастания";
@@ -21,15 +25,12 @@ public class PrintFieldAscendingHealth extends AbstractCommand {
         if (collection == null || collection.isEmpty()) {
             response.add("Коллекция пуста");
         } else {
-            List<Long> healths = new ArrayList<>();
-            for (SpaceMarine marine : collection) {
-                healths.add(marine.getHealth());
-            }
-            healths.sort(Long::compareTo);
             response.add("Отсортированный список жизней:");
-            for (Long health : healths) {
-                response.add(health.toString());
-            }
+            collection.stream()
+                    .map(SpaceMarine::getHealth)
+                    .sorted()
+                    .map(Object::toString)
+                    .forEach(response::add);
         }
         return response.toArray();
     }

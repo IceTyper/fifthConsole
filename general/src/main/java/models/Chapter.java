@@ -14,6 +14,17 @@ public class Chapter implements Serializable {
         this.world = world;
     }
 
+    public long getMarinesCount() {
+        return marinesCount;
+    }
+
+    public String getWorld() {
+        return world;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public String toString() {

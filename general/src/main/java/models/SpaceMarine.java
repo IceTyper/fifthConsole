@@ -2,25 +2,27 @@ package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
+    private final String owner;
     //static private long ID = 1L;
     private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Long health; //Поле не может быть null, Значение поля должно быть больше 0
     private boolean loyal;
     private Weapon weaponType; //Поле не может быть null
     private MeleeWeapon meleeWeapon; //Поле не может быть null
     private Chapter chapter; //Поле не может быть null
 
-    public SpaceMarine(Long id, String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
-        this.id = id;
+    public SpaceMarine(String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter, String owner) {
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = LocalDate.now();
+        this.owner = owner;
+        this.creationDate = LocalDateTime.now();
         this.health = health;
         this.loyal = loyal;
         this.weaponType = weaponType;
@@ -28,10 +30,11 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
         this.chapter = chapter;
     }
 
-    public SpaceMarine(String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter) {
+    public SpaceMarine(String name, Coordinates coordinates, Long health, boolean loyal, Weapon weaponType, MeleeWeapon meleeWeapon, Chapter chapter, String owner, LocalDateTime time) {
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = LocalDate.now();
+        this.owner = owner;
+        this.creationDate = time;
         this.health = health;
         this.loyal = loyal;
         this.weaponType = weaponType;
@@ -79,12 +82,16 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
         this.coordinates = coordinates;
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 
     public Weapon getWeaponType() {
@@ -129,7 +136,8 @@ public class SpaceMarine implements Comparable<SpaceMarine>, Serializable {
                 "\n Лояльность = " + loyal +
                 "\n Оружие = " + weaponType +
                 "\n Холодное оружие = " + meleeWeapon +
-                "\n Часть = " + chapter;
+                "\n Часть = " + chapter +
+                "\n Владелец = " + owner;
     }
 
     @Override

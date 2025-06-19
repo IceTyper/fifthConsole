@@ -2,11 +2,16 @@ package command.commands;
 
 import collection.CollectionHandler;
 import command.AbstractCommand;
+import command.Helpable;
 
 import java.util.ArrayList;
 import java.util.Deque;
 
-public class Show extends AbstractCommand {
+public class Show extends AbstractCommand implements Helpable {
+    public Show(int[] ints) {
+        super(ints);
+    }
+
     @Override
     public String getDescription() {
         return "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
@@ -14,7 +19,7 @@ public class Show extends AbstractCommand {
 
     @Override
     public Object[] execute(Object[] args) {
-        ArrayList<Object> response = new ArrayList<Object>();
+        ArrayList<Object> response = new ArrayList<>();
         Deque<?> collection = new CollectionHandler().getCollection();
         if (!(collection == null || collection.isEmpty())) {
             for (Object element : collection) {
@@ -28,3 +33,4 @@ public class Show extends AbstractCommand {
         return response.toArray();
     }
 }
+
