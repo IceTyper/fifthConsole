@@ -9,6 +9,7 @@ import exceptions.InvalidNumberException;
 import io.IOHandable;
 import io.IOHandler;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
@@ -109,7 +110,15 @@ public class Client {
         System.out.print("Введите логин " + line + ": ");
         String login = io.readConsoleLine();
         System.out.print("Введите пароль " + line + ": ");
-        String password = io.readConsoleLine();
+        String password;
+        Console console = System.console();
+        if (console != null) {
+            char[] passwordChars = console.readPassword();
+            password = new String(passwordChars);
+            java.util.Arrays.fill(passwordChars, ' ');
+        } else {
+            password = io.readConsoleLine();
+        }
         return new String[]{login, password};
     }
 

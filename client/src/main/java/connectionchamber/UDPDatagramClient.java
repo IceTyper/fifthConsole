@@ -54,7 +54,7 @@ public class UDPDatagramClient implements Connectable {
             //System.out.println("Ответ получен!");
             return received;
         } catch (IOException e) {
-            throw new IOException("превышено время ожидано от серера (30 секунд)");
+            throw new IOException("превышено время ожидания от сервера (30 секунд)");
         }
         finally {
             socket.setSoTimeout(0);
