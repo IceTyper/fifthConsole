@@ -23,7 +23,7 @@ public class Server {
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
 
-        new Thread(() -> {
+        Thread thread = new Thread(() -> {
             while (Exit.isOn()) {
                 try {
                     UDPChannelServer server = new UDPChannelServer();
@@ -54,21 +54,26 @@ public class Server {
                             System.out.println("Error deserializing message: " + e.getMessage());
                         }
                     });
-
-
-                } catch (IOException e) {
-                    System.out.println("Error in server thread: " + e.getMessage());
+                } catch (IOException ignored) {
+                    //System.out.println("Error in server thread: " + e.getMessage());
                 }
             }
-        }).start();
+        });
+        thread.start();
 
         while (Exit.isOn()) {
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.equals("exit")) {
-                scanner.close();
-                cachedThreadPool.shutdown();
-                fixedThreadPool.shutdown();
-                new Exit(a(0)).execute(null);
+                try {
+                    thread.interrupt();
+                    UDPChannelServer.close();
+                    scanner.close();
+                    cachedThreadPool.shutdown();
+                    fixedThreadPool.shutdown();
+                    new Exit(a(0)).execute(null);
+                } catch (IOException e) {
+                    System.out.println("Channel didnt wanna close: " + e.getMessage());
+                }
             } else System.out.println("Unknown command");
         }
     }

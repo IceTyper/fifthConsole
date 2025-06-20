@@ -9,5 +9,5 @@ public interface Connectable {
 
     byte[] receive() throws IOException;
 
-    void close() throws IOException;
+    static void close() throws IOException {}
 }

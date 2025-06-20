@@ -47,8 +47,7 @@ public class UDPChannelServer implements Connectable {
         return packet.data();
     }
 
-    @Override
-    public void close() throws IOException {
+    public static void close() throws IOException {
         channel.close();
     }
 }
