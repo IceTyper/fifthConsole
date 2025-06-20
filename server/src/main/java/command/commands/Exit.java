@@ -18,10 +18,10 @@ public class Exit extends AbstractCommand {
 
     @Override
     public Object[] execute(Object[] args) {
-        System.out.println(Arrays.toString(new Save(new int[]{0}).execute(args)));
         isOn = false;
         try {
             DataBase.closeConnection();
+            System.exit(0);
         } catch (Exception e) {
             System.err.println("Error while closing connection with data base: " + e.getMessage());
         }

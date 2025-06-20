@@ -64,9 +64,12 @@ public class Server {
 
         while (Exit.isOn()) {
             String input = scanner.nextLine().trim().toLowerCase();
-            if (input.equals("exit")) new Exit(a(0)).execute(null);
-            else if (input.equals("save")) new Save(a(0)).execute(null);
-            else System.out.println("Unknown command");
+            if (input.equals("exit")) {
+                scanner.close();
+                cachedThreadPool.shutdown();
+                fixedThreadPool.shutdown();
+                new Exit(a(0)).execute(null);
+            } else System.out.println("Unknown command");
         }
     }
 
