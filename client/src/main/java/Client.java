@@ -6,18 +6,20 @@ import connectionchamber.HashMD5;
 import connectionchamber.Sender;
 import connectionchamber.UDPDatagramClient;
 import exceptions.InvalidNumberException;
+import gui.RegistrationFrame;
 import io.IOHandable;
 import io.IOHandler;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 
 public class Client {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         int port = validatePort(args);
         runLoop(port);
     }
@@ -38,11 +40,13 @@ public class Client {
         return 0;
     }
 
-    private static void runLoop(int port) {
+    private static void runLoop(int port) throws InterruptedException {
         Connectable client = connectWithServer("localhost", port);
         Sender.setClient(client);
+        RegistrationFrame registrationFrame = new RegistrationFrame();
+        registrationFrame.setVisible(true);
         while (UDPDatagramClient.getUser() == null) {
-            registerUser();
+            TimeUnit.MILLISECONDS.sleep(3000);
         }
         System.out.println("Приложение запущено и готово к работе");
         IOHandable io = new IOHandler();

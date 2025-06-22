@@ -3,7 +3,7 @@ package models;
 import java.io.Serializable;
 
 public enum Weapon implements Serializable {
-    HEAVY_BOLTGUN("HEAVY_BOLT_GUN"),
+    HEAVY_BOLTGUN("HEAVY_BOLTGUN"),
     GRAV_GUN("GRAV_GUN"),
     HEAVY_FLAMER("HEAVY_FLAMER"),
     NOTHING("NONE");

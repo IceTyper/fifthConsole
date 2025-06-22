@@ -4,7 +4,6 @@ import collection.CollectionHandler;
 import command.AbstractCommand;
 import command.Helpable;
 
-import java.util.ArrayList;
 import java.util.Deque;
 
 public class Show extends AbstractCommand implements Helpable {
@@ -19,18 +18,11 @@ public class Show extends AbstractCommand implements Helpable {
 
     @Override
     public Object[] execute(Object[] args) {
-        ArrayList<Object> response = new ArrayList<>();
         Deque<?> collection = new CollectionHandler().getCollection();
         if (!(collection == null || collection.isEmpty())) {
-            for (Object element : collection) {
-                response.add("*******");
-                response.add(element.toString());
-                response.add("*******");
-            }
-        } else {
-            response.add("Коллекция пуста");
+            return collection.toArray();
         }
-        return response.toArray();
+        return null;
     }
 }
 

@@ -10,7 +10,7 @@ public record User(String username, String password) implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof User && username.equals(((User) obj).username);
+        return obj instanceof User && username.equals(((User) obj).username) && password.equals(((User) obj).password);
     }
 
     @Override
